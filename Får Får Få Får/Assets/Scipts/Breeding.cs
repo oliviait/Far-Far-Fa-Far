@@ -29,6 +29,7 @@ public class Breeding : MonoBehaviour
             sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0f);
             sheep.GetComponent<Genetics>().GenesA = RandomGenes();
             sheep.GetComponent<Genetics>().GenesB = RandomGenes();
+            sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
         }
     }
 
@@ -48,6 +49,7 @@ public class Breeding : MonoBehaviour
                 childGenes.GenesA[i] = SetGene(firstParentGenes.GenesA[i], firstParentGenes.GenesB[i]);
                 childGenes.GenesB[i] = SetGene(secondParentGenes.GenesA[i], secondParentGenes.GenesB[i]);
             }
+            child.GetComponent<Stats>().SetStats(childGenes);
             child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0f);
             FirstParent.GetComponent<Selectable>().Deselect();
             SecondParent.GetComponent<Selectable>().Deselect();
@@ -107,7 +109,15 @@ public class Breeding : MonoBehaviour
         int[] genes = new int[GenesNum];
         for (int i = 0; i < GenesNum; i++)
         {
-            genes[i] = UnityEngine.Random.Range(0, 1 << 16);
+            for (int j = 1; j < 1<<15; j *= 2)
+            {
+                int add = UnityEngine.Random.Range(0, 4);
+                if (add == 0)
+                {
+                    genes[i] += j; 
+                }
+            }
+            
         }
         return genes;
     }
