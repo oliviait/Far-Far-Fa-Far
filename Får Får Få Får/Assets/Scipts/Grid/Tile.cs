@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridTile : MonoBehaviour
+public class Tile : MonoBehaviour
 {
     public Vector2 GridPos;
 
@@ -13,11 +13,16 @@ public class GridTile : MonoBehaviour
 
     private SpriteRenderer sr;
 
+    public GamePiece occupant;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         ApplyColor();
     }
+
+    public void SetGamePiece(GamePiece piece) => occupant = piece;
+    public bool IsOccupied() => occupant != null;
 
     private void ApplyColor()
     {
@@ -44,7 +49,6 @@ public class GridTile : MonoBehaviour
         ApplyColor();
     }
 
-    // optional helper if you want to set from other scripts
     public void SetActive(bool value)
     {
         active = value;

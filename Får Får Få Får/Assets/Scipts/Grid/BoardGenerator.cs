@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridGenerator : MonoBehaviour
+public class BoardGenerator : MonoBehaviour
 {
     public GameObject TilePrefab;
     public float TileScaleY;
@@ -9,18 +9,14 @@ public class GridGenerator : MonoBehaviour
 
     private float TileWidth;
 
-    public GameObject Board;
+    public GameObject BoardGameObject;
 
     public int BoardSizeX;    // how many tiles across
     public int BoardSizeY;    // how many tiles in a column
 
     private float ySpacing;   // used for tile placement in column
 
-    private void Start()
-    {
-        // Generate board
-        GenerateBoard(BoardSizeX, BoardSizeY);
-    }
+    private GameObject[,] Board; // 2D matrix for holding board tiles
 
     private void Awake()
     {
@@ -29,8 +25,17 @@ public class GridGenerator : MonoBehaviour
 
         TileWidth *= TileScaleX;
         ySpacing *= TileScaleY;
+
+        Board = new GameObject[BoardSizeY, BoardSizeX];
     }
 
+    private void Start()
+    {
+        // Generate board
+        GenerateBoard(BoardSizeX, BoardSizeY);
+    }
+
+    public GameObject[,] GetBoard() => Board;
     // Calculates the coordinates of top left tile, so that the board is centered.
     public Vector3 CalcStartPos()
     {
@@ -49,21 +54,20 @@ public class GridGenerator : MonoBehaviour
 
         return pos;
     }
-
     public void GenerateBoard(int BoardX, int BoardY)
     {
         Vector3 startPos = CalcStartPos();
 
         float X = startPos.x;
 
-        for (int column = 0; column < BoardSizeX; column++) // we create cell's by columns
+        for (int column = 0; column < BoardSizeX; column++) // how many columns
         {
             float Y = startPos.y;
 
             bool right = false;
-            for (int row = 0; row < BoardSizeY; row++)  // then rows
+            for (int row = 0; row < BoardSizeY; row++)  // creating column
             {
-                GameObject tile = Instantiate(TilePrefab, Board.transform);
+                GameObject tile = Instantiate(TilePrefab, BoardGameObject.transform);
 
                 // Tile pos
                 if (right)
@@ -74,7 +78,10 @@ public class GridGenerator : MonoBehaviour
                 // Tile Scale
                 tile.transform.localScale = new Vector3(TileScaleX, TileScaleY, 1);
                 // Tile coords
-                tile.GetComponent<GridTile>().GridPos = new Vector2(row, column);
+                tile.GetComponent<Tile>().GridPos = new Vector2(row, column);
+
+                // Tile to board
+                Board[row, column] = tile;
 
                 // Moving to next row
                 Y -= ySpacing + TileSpacing;
