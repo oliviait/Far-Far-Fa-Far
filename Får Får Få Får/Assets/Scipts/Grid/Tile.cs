@@ -13,7 +13,7 @@ public class Tile : MonoBehaviour
 
     private SpriteRenderer sr;
 
-    public GamePiece occupant;
+    private GameObject occupant;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour
         ApplyColor();
     }
 
-    public void SetGamePiece(GamePiece piece) => occupant = piece;
+    public void SetOccupant(GameObject piece) => occupant = piece;
     public bool IsOccupied() => occupant != null;
 
     private void ApplyColor()
@@ -31,11 +31,13 @@ public class Tile : MonoBehaviour
         else sr.color = active ? ActiveColor : UnactiveColor;
     }
 
+    
     private void OnMouseEnter()
     {
         isHovered = true;
         ApplyColor();
     }
+    
 
     private void OnMouseExit()
     {

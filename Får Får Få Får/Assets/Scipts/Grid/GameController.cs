@@ -1,22 +1,26 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardGenerator : MonoBehaviour
+public class GameController : MonoBehaviour
 {
+    // Tile
     public GameObject TilePrefab;
     public float TileScaleY;
     public float TileScaleX;
     public float TileSpacing;
-
     private float TileWidth;
 
-    public GameObject BoardGameObject;
-
+    // Board
+    public GameObject BoardGameObject;  // parent gameobject for tiles
     public int BoardSizeX;    // how many tiles across
     public int BoardSizeY;    // how many tiles in a column
-
     private float ySpacing;   // used for tile placement in column
-
     private GameObject[,] Board; // 2D matrix for holding board tiles
+
+    // Battle
+    public GameObject PiecePrefab;
+    private BattleData battleData;
 
     private void Awake()
     {
@@ -33,6 +37,51 @@ public class BoardGenerator : MonoBehaviour
     {
         // Generate board
         GenerateBoard(BoardSizeX, BoardSizeY);
+
+        battleData = Inventory.GetCurrentLevelData();
+        PlacePieces();
+    }
+
+    private void PlacePieces()
+    {
+        // Enemy pieces
+        int counter = 0;
+        foreach (Vector2Int pos in battleData.EnemySpawnLocations) 
+        {
+            GameObject piece = Instantiate(PiecePrefab);
+            GameObject tile = Board[pos.y, pos.x];
+            Piece p = piece.GetComponent<Piece>();
+
+            tile.GetComponent<Tile>().SetOccupant(piece);
+            piece.transform.position = tile.transform.position;
+            p.SetData(battleData.Enemies[counter]);
+            counter++;
+        }
+
+        // Player pieces
+        counter = 0;
+        foreach (Vector2Int pos in battleData.PlayerSpawnLocations)
+        {
+            if (counter >= Inventory.Sheep.Count) return;
+
+            GameObject piece = Instantiate(PiecePrefab);
+            GameObject tile = Board[pos.y, pos.x];
+            Piece p = piece.GetComponent<Piece>();
+
+            tile.GetComponent<Tile>().SetOccupant(piece);
+            piece.transform.position = tile.transform.position;
+            p.SetData(Inventory.Sheep[counter]);
+            counter++;
+        }
+    }
+
+    
+
+    public void LoadBattleData(BattleData bd)
+    {
+        BoardSizeX = bd.BoardSizeX;
+        BoardSizeY = bd.BoardSizeY;
+
     }
 
     public GameObject[,] GetBoard() => Board;
