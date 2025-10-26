@@ -191,7 +191,7 @@ public class BattleController : MonoBehaviour
 
         // Find tile where movingPiece sits
         fromTile = FindTileOccupideByPiece(movingPiece);
-        if (fromTile != null) fromTile.SetAsFromTile(true);
+        if (fromTile != null) fromTile.SetTileType(Tile.TileType.MovingFrom);
 
         // Check who's turn
         if (movingPiece.GetOwner() == Piece.Team.Opponent) OpponentPlay(movingPiece);
@@ -223,13 +223,18 @@ public class BattleController : MonoBehaviour
                 // Is enemy on tile
                 Piece occPiece = tile.GetOccupant();
                 if (occPiece.GetOwner() == Piece.Team.Opponent)
+                {
                     tile.SetHighlight(true, Tile.HighlightType.Attack);
+                    tile.SetTileType(Tile.TileType.Attackable);
+                }
                 else
+                {
                     tile.SetHighlight(false, Tile.HighlightType.None); // Cannot land on another sheep
+                }
             }
             else
             {
-                tile.SetMovable(true);
+                tile.SetTileType(Tile.TileType.Free);
                 tile.SetHighlight(true, Tile.HighlightType.Move);
             }
         }
@@ -328,7 +333,13 @@ public class BattleController : MonoBehaviour
             {
                 // attack (do not move onto tile)
                 movingPiece.Attack(target);
-                if (target == null) ClearTileOccupant(clicked);
+                if (target == null || target.gameObject == null || target) // if enemy died
+                {
+                    Debug.Log("Enemy DIED!!!!");
+                    clicked.SetTileType(Tile.TileType.Free);
+                    clicked.SetOccupant(null);
+                    clicked.SetHighlight(true, Tile.HighlightType.Move);
+                }
                 EndTurn();
                 return;
             }
@@ -347,11 +358,6 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    public void ClearTileOccupant(Tile t)
-    {
-        t.SetOccupant(null);
-    }
-
     private void OpponentPlay(Piece aiPiece)
     {
         Tile start = FindTileOccupideByPiece(aiPiece);
@@ -364,7 +370,7 @@ public class BattleController : MonoBehaviour
         {
             Piece target = attackTile.GetOccupant();
             aiPiece.Attack(target);
-            if (target == null) ClearTileOccupant(attackTile);
+            if (target == null) attackTile.SetOccupant(null);
             EndTurn();
             return;
         }
@@ -403,9 +409,9 @@ public class BattleController : MonoBehaviour
     {
         foreach (Tile tile in Board)
         {
-            tile.SetMovable(false);
+            tile.SetTileType(Tile.TileType.Base);
+
             tile.SetHighlight(false, Tile.HighlightType.None);
-            tile.SetAsFromTile(false);
         }
         TilesInRange.Clear();
     }

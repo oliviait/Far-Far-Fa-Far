@@ -7,20 +7,26 @@ public class Tile : MonoBehaviour
 
     public GameObject Highlight;
     public enum HighlightType { None, Move, Attack }
+    public enum TileType { Free, Attackable, MovingFrom, Base}
 
-    public Color UnactiveColor;
-    public Color ActiveColor;
+    public Color BaseColor;
+    public Color MovingFromColor;
     public Color HighlightColor;
     public Color AttackHighlightColor;
 
-
-    private bool active = false;
     private bool isHovered = false;
-    private bool movableSpace = false;
+    private TileType tileType;
 
     private SpriteRenderer sr;
 
     private Piece occupant;
+
+    public void SetTileType(TileType tileType)
+    {
+        this.tileType = tileType;
+        ApplyColor();
+    }
+
 
     private void Awake()
     {
@@ -36,25 +42,35 @@ public class Tile : MonoBehaviour
     private void ApplyColor()
     {
         if (sr == null) return;
-        if (isHovered) sr.color = HighlightColor;
-        else sr.color = active ? ActiveColor : UnactiveColor;
+        /*
+        if (isHovered && freeSpace) sr.color = HighlightColor;
+        else if (isHovered && attackableSpace) sr.color = AttackHighlightColor;
+        else sr.color = attackableSpace ? MovingFromColor : BaseColor;*/
+
+        if (isHovered)
+        {
+            if (tileType == TileType.Free)
+            {
+                sr.color = HighlightColor;
+            }
+            else if (tileType == TileType.Attackable)
+            {
+                sr.color = AttackHighlightColor;
+            }
+        }
+        else {
+            if (tileType == TileType.MovingFrom) sr.color = MovingFromColor;
+            else sr.color = BaseColor;
+
+        }
+
     }
 
-    
-    private void OnMouseEnter()
+    private void OnMouseOver()
     {
-        if (movableSpace)
-        {
-            isHovered = true;
-            ApplyColor();
-        }
-        else
-        {
-            isHovered = false;
-            ApplyColor();
-        }
+        isHovered = true;
+        ApplyColor();
     }
-    
 
     private void OnMouseExit()
     {
@@ -68,19 +84,11 @@ public class Tile : MonoBehaviour
         BattleController.Instance.OnTileClicked(this);
     }
 
-    public void SetAsFromTile(bool value)
-    {
-        active = value;
-        ApplyColor();
-    }
-
-    public void SetMovable(bool isMovableTo) => movableSpace = isMovableTo;
-
     public void SetHighlight(bool hasHighlight, HighlightType type)
     {
         if (Highlight == null) return;
         Highlight.SetActive(hasHighlight);
-        if (!hasHighlight) return;
+        if (!hasHighlight) return;  // If highlight was set as unactive then thats it
 
         SpriteRenderer highlightSR = Highlight.GetComponent<SpriteRenderer>();
         if (highlightSR == null) return;

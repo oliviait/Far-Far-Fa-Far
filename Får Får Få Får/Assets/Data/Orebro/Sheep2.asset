@@ -15,6 +15,6 @@ MonoBehaviour:
   maxHP: 5
   DEF: 1
   STR: 1
-  SPD: 1
+  SPD: 2
   Sprite: {fileID: -2413806693520163455, guid: b2a46e58255023641b7359bf2ebd53f1, type: 3}
   Name: Sheep2

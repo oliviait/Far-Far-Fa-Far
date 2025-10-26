@@ -5,6 +5,8 @@ public class Piece : MonoBehaviour
     public enum Team { Player, Opponent }
     public Team Owner;
 
+    public GameObject Parent;
+
     // Data
     public float powerConstant = 1;
     public SpriteRenderer sr;
@@ -30,7 +32,7 @@ public class Piece : MonoBehaviour
     private void Start()
     {
         hp = maxHP;
-        NextMoveTime = 1 / speed;
+        NextMoveTime = 1f / speed;
     }
 
     public float GetNextMoveTime()
@@ -40,7 +42,7 @@ public class Piece : MonoBehaviour
 
     public void IncrementNextMoveTime()
     {
-        NextMoveTime += 1 / speed;
+        NextMoveTime += 1f / speed;
     }
 
     public void SetData(SheepData data)
@@ -75,7 +77,7 @@ public class Piece : MonoBehaviour
     private void Die()
     {
         // caller should clear tile occupant.
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public void Attack(Piece target)

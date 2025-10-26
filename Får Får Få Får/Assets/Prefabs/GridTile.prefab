@@ -49,10 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridTile
   GridPos: {x: 0, y: 0}
   Highlight: {fileID: 7546951196091008501}
-  UnactiveColor: {r: 0, g: 0.78431374, b: 0.39215687, a: 1}
-  ActiveColor: {r: 0, g: 0.5882353, b: 0.19607843, a: 1}
-  HighlightColor: {r: 0.5882353, g: 1, b: 0, a: 1}
-  AttackHighlightColor: {r: 1, g: 0, b: 0, a: 1}
+  BaseColor: {r: 0.6509804, g: 0.827451, b: 0.36862746, a: 1}
+  MovingFromColor: {r: 0.1254902, g: 0.4117647, b: 0.13725491, a: 1}
+  HighlightColor: {r: 0.49019608, g: 0.654902, b: 0.22745098, a: 1}
+  AttackHighlightColor: {r: 0.41960785, g: 0.18431373, b: 0, a: 1}
 --- !u!212 &8648752031571471869
 SpriteRenderer:
   m_ObjectHideFlags: 0

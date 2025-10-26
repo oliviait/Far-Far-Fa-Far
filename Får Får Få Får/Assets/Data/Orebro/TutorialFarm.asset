@@ -20,7 +20,6 @@ MonoBehaviour:
   BoardSizeY: 3
   Animals:
   - {fileID: 11400000, guid: 45bbf675e6760984d97d66647778121a, type: 2}
-  - {fileID: 11400000, guid: 45bbf675e6760984d97d66647778121a, type: 2}
   EnemySpawnLocations:
   - {x: 4, y: 1}
   PlayerSpawnLocations:

@@ -16,5 +16,5 @@ MonoBehaviour:
   DEF: 1
   STR: 1
   SPD: 1
-  Sprite: {fileID: -2413806693520163455, guid: b2a46e58255023641b7359bf2ebd53f1, type: 3}
+  Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   Name: EnemySheep
