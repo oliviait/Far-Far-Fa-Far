@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3ecab4bcc343340b754252ff938453, type: 3}
+  m_Name: Orebro
+  m_EditorClassIdentifier: Assembly-CSharp::RegionData
+  Farms:
+  - {fileID: 11400000, guid: fce918c39399bfe44a9cbd6dc0869c1c, type: 2}
+  - {fileID: 11400000, guid: 647d1040f0869d44e975c085907ce42f, type: 2}
+  - {fileID: 11400000, guid: 41b77443cc3986142aeef906c7d4c086, type: 2}
+  - {fileID: 11400000, guid: 01ec9baa9d2fe0e4eb983b33c309727d, type: 2}
+  - {fileID: 11400000, guid: 7f3e3977c7548384d9749fdb4446bd73, type: 2}

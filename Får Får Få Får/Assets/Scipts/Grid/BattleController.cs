@@ -1,14 +1,18 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class BattleController : MonoBehaviour
 {
+    // HARD CODED FOR NOW
+    public OpponentFarmData AJUTINEFARMDATA;
+
     // Tile
     public GameObject TilePrefab;
     public float TileScaleY;
     public float TileScaleX;
-    public float TileSpacing;
+    public float TileSpacing;   // space between tiles
     private float TileWidth;
 
     // Board
@@ -20,7 +24,7 @@ public class GameController : MonoBehaviour
 
     // Battle
     public GameObject PiecePrefab;
-    private BattleData battleData;
+    private OpponentFarmData opponentFarmData;
 
     private void Awake()
     {
@@ -35,10 +39,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        // Generate board
-        GenerateBoard(BoardSizeX, BoardSizeY);
+        LoadOpponentFarmData(AJUTINEFARMDATA);
 
-        battleData = Inventory.GetCurrentLevelData();
+        // Generate board
+        GenerateBoard();
+
         PlacePieces();
     }
 
@@ -46,23 +51,30 @@ public class GameController : MonoBehaviour
     {
         // Enemy pieces
         int counter = 0;
-        foreach (Vector2Int pos in battleData.EnemySpawnLocations) 
+        foreach (Vector2Int pos in opponentFarmData.EnemySpawnLocations)
         {
+            if (opponentFarmData == null) { Debug.LogError("opponentFarmData is null"); return; }
+            if (opponentFarmData.EnemySpawnLocations == null) { Debug.LogError("EnemySpawnLocations is null"); return; }
+            if (opponentFarmData.Animals == null) { Debug.LogError("Animals array is null"); return; }
+
             GameObject piece = Instantiate(PiecePrefab);
             GameObject tile = Board[pos.y, pos.x];
             Piece p = piece.GetComponent<Piece>();
 
             tile.GetComponent<Tile>().SetOccupant(piece);
             piece.transform.position = tile.transform.position;
-            p.SetData(battleData.Enemies[counter]);
+            p.SetData(
+                opponentFarmData.
+                Animals[counter]
+            );
             counter++;
         }
 
         // Player pieces
         counter = 0;
-        foreach (Vector2Int pos in battleData.PlayerSpawnLocations)
+        foreach (Vector2Int pos in opponentFarmData.PlayerSpawnLocations)
         {
-            if (counter >= Inventory.Sheep.Count) return;
+            if (counter >= Player.Instance.Sheep.Count) return;  // If player doesn't have enough sheep in inv
 
             GameObject piece = Instantiate(PiecePrefab);
             GameObject tile = Board[pos.y, pos.x];
@@ -70,18 +82,22 @@ public class GameController : MonoBehaviour
 
             tile.GetComponent<Tile>().SetOccupant(piece);
             piece.transform.position = tile.transform.position;
-            p.SetData(Inventory.Sheep[counter]);
+            p.SetData(Player.Instance.Sheep[counter]);
             counter++;
         }
     }
 
     
 
-    public void LoadBattleData(BattleData bd)
+    public void LoadOpponentFarmData(OpponentFarmData bd)
     {
+        if (bd == null) return;
+
+        opponentFarmData = bd;
         BoardSizeX = bd.BoardSizeX;
         BoardSizeY = bd.BoardSizeY;
 
+        Board = new GameObject[BoardSizeY, BoardSizeX];
     }
 
     public GameObject[,] GetBoard() => Board;
@@ -103,7 +119,7 @@ public class GameController : MonoBehaviour
 
         return pos;
     }
-    public void GenerateBoard(int BoardX, int BoardY)
+    public void GenerateBoard()
     {
         Vector3 startPos = CalcStartPos();
 

@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Region
   RegionName: "\xD6rebro"
-  Data: {fileID: 0}
+  Data: {fileID: 11400000, guid: 08c2c4c15b0320e4faeb4b0a25d54801, type: 2}
   OpponentFarmPrefab: {fileID: 6441217683984658458, guid: 27fe3cf79f803294b822c4d7c22336a8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

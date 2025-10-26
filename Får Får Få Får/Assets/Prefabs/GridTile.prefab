@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridTile
   GridPos: {x: 0, y: 0}
-  UnactiveColor: {r: 1, g: 1, b: 1, a: 1}
-  ActiveColor: {r: 0.38993704, g: 0.38993704, b: 0.38993704, a: 1}
+  UnactiveColor: {r: 0, g: 0.78431374, b: 0.39215687, a: 1}
+  ActiveColor: {r: 0, g: 0.5882353, b: 0.19607843, a: 1}
   HoverColor: {r: 0.27044016, g: 0.27044016, b: 0.27044016, a: 1}
-  SR: {fileID: 0}
 --- !u!212 &8648752031571471869
 SpriteRenderer:
   m_ObjectHideFlags: 0

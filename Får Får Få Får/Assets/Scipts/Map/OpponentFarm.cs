@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class OpponentFarm : MonoBehaviour
 {
-    public EnemyData[] Animals;
+    public List<EnemyData> Animals;
     public string FarmerName;
     public string Species;
     public bool Defeated;

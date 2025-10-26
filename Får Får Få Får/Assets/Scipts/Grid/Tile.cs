@@ -6,7 +6,7 @@ public class Tile : MonoBehaviour
 
     public Color UnactiveColor;
     public Color ActiveColor;
-    public Color HoverColor;
+    public Color HighlightColor;
 
     private bool active = false;
     private bool isHovered = false;
@@ -27,7 +27,7 @@ public class Tile : MonoBehaviour
     private void ApplyColor()
     {
         if (sr == null) return;
-        if (isHovered) sr.color = HoverColor;
+        if (isHovered) sr.color = HighlightColor;
         else sr.color = active ? ActiveColor : UnactiveColor;
     }
 
