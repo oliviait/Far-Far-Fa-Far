@@ -333,7 +333,7 @@ public class BattleController : MonoBehaviour
             {
                 // attack (do not move onto tile)
                 movingPiece.Attack(target);
-                if (target == null || target.gameObject == null || target) // if enemy died
+                if (target == null || target.gameObject == null) // if enemy died
                 {
                     Debug.Log("Enemy DIED!!!!");
                     clicked.SetTileType(Tile.TileType.Free);

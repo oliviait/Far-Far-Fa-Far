@@ -72,6 +72,7 @@ public class Piece : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         hp -= Mathf.Max(0, dmg);
+        Debug.Log("Remaining HP: " + hp);
         if (hp <= 0) Die();
     }
     private void Die()
@@ -82,7 +83,14 @@ public class Piece : MonoBehaviour
 
     public void Attack(Piece target)
     {
-        int damage = (int) (powerConstant * strength / defence);
+        Debug.Log("HERE");
+        int damage = (int) (powerConstant * (float) strength / (float) defence);
+        Debug.Log("DAMAGE: " + damage);
         target.TakeDamage(damage);
+    }
+
+    private void OnDestroy()
+    {
+        sr.sprite = null;
     }
 }
