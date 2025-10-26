@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6691620816135321068}
   - component: {fileID: -526767284520237973}
   - component: {fileID: 2169305034126282154}
+  - component: {fileID: 9168602223427502457}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -197,8 +198,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckStats
   DisplayStats: {fileID: 3467164923855960398}
-  StatsBg: {fileID: 0}
   Offset: {x: -4, y: -5, z: 0}
+--- !u!114 &9168602223427502457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896820915681682413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5490baabcbe43d493261fb71d2864e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  itemName: Sheep
+  icon: {fileID: -2413806693520163455, guid: b2a46e58255023641b7359bf2ebd53f1, type: 3}
 --- !u!1001 &4909621171356570398
 PrefabInstance:
   m_ObjectHideFlags: 0
