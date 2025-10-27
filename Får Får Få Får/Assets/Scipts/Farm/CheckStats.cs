@@ -5,7 +5,7 @@ public class CheckStats : MonoBehaviour
 {
     public string StatsDisplay;
     private TextMeshProUGUI displayStats;
-    public Vector3 Offset = new Vector3 (-4, -5, 0);
+    public Vector3 Offset;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class CheckStats : MonoBehaviour
 
     private void OnMouseOver()
     {
-        displayStats.transform.localPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
+        displayStats.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
         if (gameObject.transform.position.x > 5)
         {
             displayStats.transform.localPosition += new Vector3(-90, 0, 0);
