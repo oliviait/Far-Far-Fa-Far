@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf935421dbcebb84d87cb74f4b08e332, type: 3}
   m_Name: Farm 3
   m_EditorClassIdentifier: Assembly-CSharp::OpponentFarmData
-  FarmerName: Hats
+  FarmerName: Mats
   Species: Cow
   Location: {x: -0.07, y: -3.42, z: 0}
   Defeated: 0
