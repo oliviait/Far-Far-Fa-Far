@@ -32,4 +32,9 @@ public class Region : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    public void onBackButtonClicked()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
