@@ -11,14 +11,14 @@ public class InventoryManager : MonoBehaviour
         Instance = this;
     }
 
-private void Start()
-{
-
-    foreach (var slot in slots)
+    private void Start()
     {
-        slot.ClearSlot();
+
+        foreach (var slot in slots)
+        {
+            slot.ClearSlot();
+        }
     }
-}
     public bool AddItem(InventoryItem item)
     {
         

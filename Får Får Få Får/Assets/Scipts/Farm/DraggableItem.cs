@@ -30,30 +30,30 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData)
-{
-
-    if (eventData.pointerEnter != null)
     {
-        var slot = eventData.pointerEnter.GetComponentInParent<InventorySlot>();;
-        if (slot != null)
+
+        if (eventData.pointerEnter != null)
         {
-
-            InventoryItem newItem = new InventoryItem
+            var slot = eventData.pointerEnter.GetComponentInParent<InventorySlot>();
+            if (slot != null)
             {
-                itemName = itemName,
-                icon = icon,
-                originalObject = gameObject
-            };
 
-            if (InventoryManager.Instance.AddItem(newItem))
-            {
-                gameObject.SetActive(false);
+                InventoryItem newItem = new InventoryItem
+                {
+                    itemName = itemName,
+                    icon = icon,
+                    originalObject = gameObject
+                };
+
+                if (InventoryManager.Instance.AddItem(newItem))
+                {
+                    gameObject.SetActive(false);
+                }
             }
-        }
     
-    }
+        }
 
-    if (dragIcon != null)
-        Destroy(dragIcon);
-}
+        if (dragIcon != null)
+            Destroy(dragIcon);
+    }
 }

@@ -26,7 +26,7 @@ public class Breeding : MonoBehaviour
         for (int i = 0; i < StartingSheep; i++)
         {
             GameObject sheep = GameObject.Instantiate(SheepPrefab);
-            sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0f);
+            sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
             sheep.GetComponent<Genetics>().GenesA = RandomGenes();
             sheep.GetComponent<Genetics>().GenesB = RandomGenes();
             sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
@@ -36,24 +36,7 @@ public class Breeding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && NumSelected == 2)
-        {
-            GameObject child = GameObject.Instantiate(SheepPrefab);
-            Genetics firstParentGenes = FirstParent.GetComponent<Genetics>();
-            Genetics secondParentGenes = SecondParent.GetComponent<Genetics>();
-            Genetics childGenes = child.GetComponent<Genetics>();
-            childGenes.GenesA = new int[GenesNum];
-            childGenes.GenesB = new int[GenesNum];
-            for (int i = 0; i < GenesNum; i++)
-            {
-                childGenes.GenesA[i] = SetGene(firstParentGenes.GenesA[i], firstParentGenes.GenesB[i]);
-                childGenes.GenesB[i] = SetGene(secondParentGenes.GenesA[i], secondParentGenes.GenesB[i]);
-            }
-            child.GetComponent<Stats>().SetStats(childGenes);
-            child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0f);
-            FirstParent.GetComponent<Selectable>().Deselect();
-            SecondParent.GetComponent<Selectable>().Deselect();
-        }
+        
     }
 
     public void Increase(GameObject parent)
@@ -79,6 +62,28 @@ public class Breeding : MonoBehaviour
         else
         {
             SecondParent = null;
+        }
+    }
+
+    public void Breed()
+    {
+        if (NumSelected == 2)
+        {
+            GameObject child = GameObject.Instantiate(SheepPrefab);
+            Genetics firstParentGenes = FirstParent.GetComponent<Genetics>();
+            Genetics secondParentGenes = SecondParent.GetComponent<Genetics>();
+            Genetics childGenes = child.GetComponent<Genetics>();
+            childGenes.GenesA = new int[GenesNum];
+            childGenes.GenesB = new int[GenesNum];
+            for (int i = 0; i < GenesNum; i++)
+            {
+                childGenes.GenesA[i] = SetGene(firstParentGenes.GenesA[i], firstParentGenes.GenesB[i]);
+                childGenes.GenesB[i] = SetGene(secondParentGenes.GenesA[i], secondParentGenes.GenesB[i]);
+            }
+            child.GetComponent<Stats>().SetStats(childGenes);
+            child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+            FirstParent.GetComponent<Selectable>().Deselect();
+            SecondParent.GetComponent<Selectable>().Deselect();
         }
     }
 

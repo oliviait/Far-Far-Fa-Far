@@ -3,28 +3,30 @@ using UnityEngine;
 
 public class CheckStats : MonoBehaviour
 {
-    public TextMeshProUGUI DisplayStats;
+    public string StatsDisplay;
+    private TextMeshProUGUI displayStats;
     public Vector3 Offset = new Vector3 (-4, -5, 0);
 
     void Start()
     {
-        DisplayStats.enabled = false;
+        displayStats = GameObject.Find(StatsDisplay).GetComponent<TextMeshProUGUI>();
+        displayStats.enabled = false;
     }
 
     private void OnMouseOver()
     {
-        DisplayStats.transform.localPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
+        displayStats.transform.localPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
         if (gameObject.transform.position.x > 5)
         {
-            DisplayStats.transform.localPosition += new Vector3(-90, 0, 0);
+            displayStats.transform.localPosition += new Vector3(-90, 0, 0);
         }
         Stats stats = gameObject.GetComponent<Stats>();
-        DisplayStats.text = stats.ToString();
-        DisplayStats.enabled = true;
+        displayStats.text = stats.ToString();
+        displayStats.enabled = true;
     }
 
     private void OnMouseExit()
     {
-        DisplayStats.enabled = false;
+        displayStats.enabled = false;
     }
 }
