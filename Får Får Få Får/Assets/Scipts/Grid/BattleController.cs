@@ -1,8 +1,10 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleController : MonoBehaviour
 {
@@ -35,6 +37,10 @@ public class BattleController : MonoBehaviour
     private Tile fromTile;  // Tile where the moving piece starts from
     private HashSet<Tile> TilesInRange = new HashSet<Tile>();
 
+    // Win/Lose con
+    public TextMeshProUGUI WinLoseText;
+    public GameObject WinLosePanel;
+
     private void Awake()
     {
         Instance = this;
@@ -46,6 +52,8 @@ public class BattleController : MonoBehaviour
         ySpacing *= TileScaleY;
 
         Board = new Tile[BoardSizeY, BoardSizeX];
+
+        WinLosePanel.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -59,11 +67,19 @@ public class BattleController : MonoBehaviour
         NextTurn();
     }
 
+    private void Update()
+    {
+        if (Piece.NumberOfEnemyPieces == 0) GameWon();
+        if (Piece.NumberOfPlayerPieces == 0) GameLost();
+    }
+
     private void PlacePieces()
     {
         // Enemy pieces
+        Piece.NumberOfEnemyPieces = 0;
+        Piece.NumberOfPlayerPieces = 0;
+
         int counter = 0;
-        Debug.Log(opponentFarmData.name);
         foreach (Vector2Int pos in opponentFarmData.EnemySpawnLocations)
         {
             GameObject pieceGameObject = Instantiate(PiecePrefab);
@@ -76,6 +92,7 @@ public class BattleController : MonoBehaviour
                 opponentFarmData.
                 Animals[counter]
             );
+            Piece.NumberOfEnemyPieces++;
             counter++;
         }
 
@@ -91,8 +108,8 @@ public class BattleController : MonoBehaviour
 
             tile.SetOccupant(piece);
             pieceGameObject.transform.position = tile.transform.position;
-            Debug.Log("Mängijal on lambaid: " + Player.Instance.Sheep.Count);
             piece.SetData(Player.Instance.Sheep[counter]);
+            Piece.NumberOfPlayerPieces++;
             counter++;
         }
     }
@@ -341,6 +358,12 @@ public class BattleController : MonoBehaviour
                 movingPiece.Attack(target);
                 if (target == null || target.gameObject == null) // if enemy died
                 {
+                    if (Piece.NumberOfEnemyPieces == 0)
+                    {
+                        GameWon();
+                        return;
+                    }
+
                     clicked.SetTileType(Tile.TileType.Free);
                     clicked.SetOccupant(null);
                     clicked.SetHighlight(true, Tile.HighlightType.Move);
@@ -373,11 +396,17 @@ public class BattleController : MonoBehaviour
         Tile attackTile = reachable.Where(tile => tile.IsOccupied() && tile.GetOccupant().Owner == Piece.Team.Player).FirstOrDefault();
         if (attackTile != null)
         {
-            Debug.Log(attackTile.GridPos);
-
             Piece target = attackTile.GetOccupant();
             aiPiece.Attack(target);
-            if (target == null) attackTile.SetOccupant(null);
+            if (target == null || target.gameObject == null) // If enemy kills player's piece
+            {
+                if (Piece.NumberOfPlayerPieces == 0)
+                {
+                    GameLost();
+                    return;
+                }
+                attackTile.SetOccupant(null);
+            }
             EndTurn();
             return;
         }
@@ -421,5 +450,23 @@ public class BattleController : MonoBehaviour
             tile.SetHighlight(false, Tile.HighlightType.None);
         }
         TilesInRange.Clear();
+    }
+
+    private void GameLost()
+    {
+        WinLosePanel.gameObject.SetActive(true);
+        WinLoseText.text = "You Lost!";
+        // Add restart level button later
+    }
+
+    private void GameWon()
+    {
+        WinLosePanel.gameObject.SetActive(true);
+        WinLoseText.text = "You Won!";
+    }
+
+    public void onBackToFarmButtonClicked()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -30,7 +30,6 @@ public class Region : MonoBehaviour
 
     public void onBattleButtonClicked()
     {
-        Debug.Log("OIEHOPWEJFO");
         SceneManager.LoadScene(2);
     }
 }

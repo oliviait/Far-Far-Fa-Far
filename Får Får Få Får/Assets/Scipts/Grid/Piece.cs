@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+    public static int NumberOfEnemyPieces = 0;
+    public static int NumberOfPlayerPieces = 0;
     public enum Team { Player, Opponent }
     public Team Owner;
 
@@ -19,7 +21,6 @@ public class Piece : MonoBehaviour
     private int strength;
     private int maxHP;
     private int defence;
-    private Sprite sprite;
 
     private float NextMoveTime;
 
@@ -53,7 +54,6 @@ public class Piece : MonoBehaviour
         defence = data.DEF;
 
         sr.sprite = data.Sprite;
-        sprite = data.Sprite;
         Owner = Team.Player;
     }
 
@@ -65,27 +65,25 @@ public class Piece : MonoBehaviour
         defence = data.DEF;
 
         sr.sprite = data.Sprite;
-        sprite = data.Sprite;
         Owner = Team.Opponent;
     }
 
     public void TakeDamage(int dmg)
     {
         hp -= Mathf.Max(0, dmg);
-        Debug.Log("Remaining HP: " + hp);
         if (hp <= 0) Die();
     }
     private void Die()
     {
+        if (Owner == Team.Player) NumberOfPlayerPieces--;
+        if (Owner == Team.Opponent) NumberOfEnemyPieces--;
         // caller should clear tile occupant.
         Destroy(gameObject);
     }
 
     public void Attack(Piece target)
     {
-        Debug.Log("HERE");
-        int damage = (int) (powerConstant * (float) strength / (float) defence);
-        Debug.Log("DAMAGE: " + damage);
+        int damage = (int) (powerConstant * (float) strength / (float) target.defence);
         target.TakeDamage(damage);
     }
 
