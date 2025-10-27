@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    // HARD CODED FOR NOW
-    public OpponentFarmData AJUTINEFARMDATA;
-
     public static BattleController Instance;
 
     // Tile
@@ -53,7 +50,7 @@ public class BattleController : MonoBehaviour
 
     private void Start()
     {
-        LoadOpponentFarmData(AJUTINEFARMDATA);
+        LoadOpponentFarmData(Player.Instance.enteringLevel);
 
         GenerateBoard();
         PlacePieces();
@@ -66,6 +63,7 @@ public class BattleController : MonoBehaviour
     {
         // Enemy pieces
         int counter = 0;
+        Debug.Log(opponentFarmData.name);
         foreach (Vector2Int pos in opponentFarmData.EnemySpawnLocations)
         {
             GameObject pieceGameObject = Instantiate(PiecePrefab);
@@ -93,6 +91,7 @@ public class BattleController : MonoBehaviour
 
             tile.SetOccupant(piece);
             pieceGameObject.transform.position = tile.transform.position;
+            Debug.Log("Mängijal on lambaid: " + Player.Instance.Sheep.Count);
             piece.SetData(Player.Instance.Sheep[counter]);
             counter++;
         }
@@ -100,7 +99,11 @@ public class BattleController : MonoBehaviour
 
     public void LoadOpponentFarmData(OpponentFarmData ofd)
     {
-        if (ofd == null) return;
+        if (ofd == null)
+        {
+            Debug.Log("BATTLECONTROLLER GOT NULL DATA");
+            return;
+        }
 
         opponentFarmData = ofd;
         BoardSizeX = ofd.BoardSizeX;
@@ -185,9 +188,11 @@ public class BattleController : MonoBehaviour
         // turnOrder = turnOrder.Where(p => p != null).ToList();
         if (turnOrder.Count == 0) return;   // There are no pieces to move
 
+        BuildTurnOrder();
         movingPiece = turnOrder[0]; // Always take the first piece
         movingPiece.IncrementNextMoveTime();    // Increment move time
         turnOrder = turnOrder.OrderBy(piece => piece.GetNextMoveTime()).ToList();   // Reorder
+        if (turnOrder.Count != 0 && turnOrder[0] == null) turnOrder.RemoveAt(0);
 
         // Find tile where movingPiece sits
         fromTile = FindTileOccupideByPiece(movingPiece);
@@ -208,6 +213,7 @@ public class BattleController : MonoBehaviour
                 if (occ == piece) return tile;
             }
         }
+        Debug.Log("DID NOT FIND TILE THAT IS OCCUPIED BY PIECE: " + piece);
         return null;
     }
 
@@ -265,7 +271,7 @@ public class BattleController : MonoBehaviour
                 if (tile.IsOccupied())
                 {
                     Piece occ = tile.GetOccupant();
-                    if (occ.Owner == Piece.Team.Player) continue; // block friendly tile
+                    if (occ.Owner == start.GetOccupant().Owner) continue; // block friendly tile
                     // enemy tile is allowable as reachable (for highlight as attack) but we do not enqueue further beyond it
                     visited.Add(tile);
                     continue;
@@ -285,6 +291,7 @@ public class BattleController : MonoBehaviour
     // Gets neighbouring tiles
     private List<Tile> GetNeighbors(Tile tile)
     {
+        if (tile == null) return null;
         var res = new List<Tile>();
 
         int row = tile.GridPos.x; // Row
@@ -293,7 +300,6 @@ public class BattleController : MonoBehaviour
         //  O X X     O X X
         //  X S X -->  X S X
         //  O X X     O X X
-        Debug.Log("X = " + row + "; Y = " + col);
         if (row % 2 == 1)
         {
             if (col > 0) res.Add(Board[row, col-1]);    // Left
@@ -335,7 +341,6 @@ public class BattleController : MonoBehaviour
                 movingPiece.Attack(target);
                 if (target == null || target.gameObject == null) // if enemy died
                 {
-                    Debug.Log("Enemy DIED!!!!");
                     clicked.SetTileType(Tile.TileType.Free);
                     clicked.SetOccupant(null);
                     clicked.SetHighlight(true, Tile.HighlightType.Move);
@@ -368,6 +373,8 @@ public class BattleController : MonoBehaviour
         Tile attackTile = reachable.Where(tile => tile.IsOccupied() && tile.GetOccupant().Owner == Piece.Team.Player).FirstOrDefault();
         if (attackTile != null)
         {
+            Debug.Log(attackTile.GridPos);
+
             Piece target = attackTile.GetOccupant();
             aiPiece.Attack(target);
             if (target == null) attackTile.SetOccupant(null);

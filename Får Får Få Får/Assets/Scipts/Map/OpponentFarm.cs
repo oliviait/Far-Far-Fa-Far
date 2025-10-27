@@ -1,41 +1,40 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class OpponentFarm : MonoBehaviour
 {
-    public List<EnemyData> Animals;
-    public string FarmerName;
-    public string Species;
-    public bool Defeated;
-    public Canvas InfoCanvas;
-    public TextMeshProUGUI Info;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public OpponentFarmData data;
+    public Canvas FarmInfoCanvas;
+    public TextMeshProUGUI InfoText;
+
+    private void Start()
     {
-        Info.text = this.ToString();
-        InfoCanvas.enabled = false;
+        transform.position = data.Location;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            InfoCanvas.enabled = false;
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        { 
+            FarmInfoCanvas.gameObject.SetActive(false);
         }
     }
-
     void OnMouseDown()
     {
-        if (!Defeated)
+        if (!data.Defeated)
         {
-            InfoCanvas.enabled = true;
+            FarmInfoCanvas.gameObject.SetActive(true);
+            InfoText.text = ToString();
+            Player.Instance.enteringLevel = data;
         }
     }
 
     public override string ToString()
     {
-        return FarmerName + "\n" + Species + " farmer";
+        return data.FarmerName + "\n" + data.Species + " farmer";
     }
 }

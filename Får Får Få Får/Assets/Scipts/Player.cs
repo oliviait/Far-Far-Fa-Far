@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // HARD CODED VALUES
-    public SheepData Sheep1;
-    public SheepData Sheep2;
-    public SheepData Sheep3;
-
     public static Player Instance;
+    public SheepData SheepData;
 
     // Player's sheep and corresponding methods
     public List<SheepData> Sheep = new List<SheepData>();
@@ -26,22 +22,15 @@ public class Player : MonoBehaviour
 
 
     // Game progress
-    private int CurrentLevel;
-    public List<OpponentFarmData> Levels = new List<OpponentFarmData>();
-    public OpponentFarmData GetCurrentLevelData() => Levels[CurrentLevel];
-
-    public void NextLevel() => CurrentLevel++;
-    public void SetLevel(int NewLevel) => CurrentLevel = NewLevel;
-
+    public OpponentFarmData enteringLevel;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         Instance = this;
 
-        // HARD CODED VALUES;
-        AddSheep(Sheep1);
-        AddSheep(Sheep2);
-        AddSheep(Sheep3);
+        AddSheep(SheepData);
+        AddSheep(SheepData);
+        AddSheep(SheepData);
     }
 }

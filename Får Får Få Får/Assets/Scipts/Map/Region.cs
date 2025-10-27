@@ -1,29 +1,36 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Region : MonoBehaviour
 {
     public string RegionName;
     public RegionData Data;
     public GameObject OpponentFarmPrefab;
+    public Canvas FarmInfoCanvas;
+    public TextMeshProUGUI InfoText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        /*
-        if (RegionName == "Örebro")
-        {
-            Data = RegionData.Orebro();
-        }*/
+        FarmInfoCanvas.gameObject.SetActive(false);
         List<OpponentFarmData> farms = Data.Farms;
         foreach (OpponentFarmData farm in farms)
         {
             GameObject opponentFarm = GameObject.Instantiate(OpponentFarmPrefab);
             opponentFarm.transform.position = farm.Location;
-            opponentFarm.GetComponent<OpponentFarm>().Animals = farm.Animals;
-            opponentFarm.GetComponent<OpponentFarm>().FarmerName = farm.FarmerName;
-            opponentFarm.GetComponent<OpponentFarm>().Species = farm.Species;
-            opponentFarm.GetComponent<OpponentFarm>().Defeated = farm.Defeated;
+            OpponentFarm opf = opponentFarm.GetComponent<OpponentFarm>();
+            opf.data = farm;
+            opf.FarmInfoCanvas = FarmInfoCanvas;
+            opf.InfoText = InfoText;
         }
+    }
+
+    public void onBattleButtonClicked()
+    {
+        Debug.Log("OIEHOPWEJFO");
+        SceneManager.LoadScene(2);
     }
 }
