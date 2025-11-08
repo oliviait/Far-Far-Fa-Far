@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
     public Vector2Int GridPos;
 
     public GameObject Highlight;
-    public enum HighlightType { None, Move, Attack }
-    public enum TileType { Free, Attackable, MovingFrom, Base}
+    public enum HighlightType { None, Free, Attack }
+    public enum TileType { Free, Attackable, MovingFrom, Default}
 
     public Color BaseColor;
     public Color MovingFromColor;
@@ -21,13 +20,6 @@ public class Tile : MonoBehaviour
 
     private Piece occupant;
 
-    public void SetTileType(TileType tileType)
-    {
-        this.tileType = tileType;
-        ApplyColor();
-    }
-
-
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -38,32 +30,26 @@ public class Tile : MonoBehaviour
     public Piece GetOccupant() => occupant;
     public void SetOccupant(Piece piece) => occupant = piece;
     public bool IsOccupied() => occupant != null;
+    public void SetTileType(TileType tileType)
+    {
+        this.tileType = tileType;
+        ApplyColor();
+    }
+    public Vector2Int getGridPos() => GridPos;
 
     private void ApplyColor()
     {
         if (sr == null) return;
-        /*
-        if (isHovered && freeSpace) sr.color = HighlightColor;
-        else if (isHovered && attackableSpace) sr.color = AttackHighlightColor;
-        else sr.color = attackableSpace ? MovingFromColor : BaseColor;*/
 
         if (isHovered)
         {
-            if (tileType == TileType.Free)
-            {
-                sr.color = HighlightColor;
-            }
-            else if (tileType == TileType.Attackable)
-            {
-                sr.color = AttackHighlightColor;
-            }
+            if (tileType == TileType.Free) sr.color = HighlightColor;
+            else if (tileType == TileType.Attackable) sr.color = AttackHighlightColor;
         }
         else {
             if (tileType == TileType.MovingFrom) sr.color = MovingFromColor;
             else sr.color = BaseColor;
-
         }
-
     }
 
     private void OnMouseOver()
@@ -80,8 +66,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // forward click to controller only if this tile is part of current movable set or attackable
-        BattleController.Instance.OnTileClicked(this);
+        TurnController.Instance.OnTileClicked(this);
     }
 
     public void SetHighlight(bool hasHighlight, HighlightType type)
@@ -92,7 +77,7 @@ public class Tile : MonoBehaviour
 
         SpriteRenderer highlightSR = Highlight.GetComponent<SpriteRenderer>();
         if (highlightSR == null) return;
-        if (type == HighlightType.Move) highlightSR.color = HighlightColor;
+        if (type == HighlightType.Free) highlightSR.color = HighlightColor;
         else if (type == HighlightType.Attack) highlightSR.color = AttackHighlightColor;
         else Highlight.SetActive(false);    // Should be unreachable
     }

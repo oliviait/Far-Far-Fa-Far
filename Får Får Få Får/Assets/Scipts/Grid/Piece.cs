@@ -8,27 +8,30 @@ public class Piece : MonoBehaviour
     public Team Owner;
 
     public GameObject Parent;
-
-    // Data
-    public float powerConstant = 1;
+    
     public SpriteRenderer sr;
 
-    // Movement range
-    public int Range = 1;
-    public int GetRange() => Range;
+    // Data
+    public float powerConstant = 1; // Attack power constant used for damage calculations
+    public int Range = 1;   // Movement range
 
     private int speed;
     private int strength;
     private int maxHP;
     private int defence;
-
-    private float NextMoveTime;
-
     private int hp;
 
+    private Tile TilePlacedOn;   // Tile that the piece is placed on
+
+    private float NextMoveTime; // Used to determine, when is this piece's turn
+
+    public int GetRange() => Range;
     public int GetSpeed() => speed;
     public Team GetOwner() => Owner;
     public void SetOwner(Team owner) => Owner = owner;
+    public Tile GetTilePlacedOn() => TilePlacedOn;
+    public void SetTilePlacedOn(Tile tile) => TilePlacedOn = tile;
+
 
     private void Start()
     {
@@ -77,7 +80,9 @@ public class Piece : MonoBehaviour
     {
         if (Owner == Team.Player) NumberOfPlayerPieces--;
         if (Owner == Team.Opponent) NumberOfEnemyPieces--;
-        // caller should clear tile occupant.
+
+        TilePlacedOn.SetOccupant(null);
+
         Destroy(gameObject);
     }
 
@@ -89,6 +94,7 @@ public class Piece : MonoBehaviour
 
     private void OnDestroy()
     {
-        sr.sprite = null;
+        if (NumberOfPlayerPieces == 0) Events.BattleLost();
+        else if (NumberOfEnemyPieces == 0) Events.BattleWon();
     }
 }
