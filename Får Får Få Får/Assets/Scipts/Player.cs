@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Instance = this;
 
+        // HARDCODED FOR NOW
         AddSheep(SheepData);
         AddSheep(SheepData);
         AddSheep(SheepData);

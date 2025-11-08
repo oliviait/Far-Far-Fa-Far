@@ -134,7 +134,6 @@ public class TurnController : MonoBehaviour
     private void ShowMovableAndHighlights(Piece piece)
     {
         int range = piece.GetRange();
-        Debug.Log("piece.GetTilePlacedOn(): " + piece.GetTilePlacedOn());
         TilesInRange = Board.Instance.GetReachableTiles(piece.GetTilePlacedOn(), range);
 
         // Set type and highlight for all tiles in moving range

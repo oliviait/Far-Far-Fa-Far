@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Piece : MonoBehaviour
 {
@@ -15,11 +16,12 @@ public class Piece : MonoBehaviour
     public float powerConstant = 1; // Attack power constant used for damage calculations
     public int Range = 1;   // Movement range
 
-    private int speed;
-    private int strength;
-    private int maxHP;
-    private int defence;
-    private int hp;
+    public int speed;
+    public int strength;
+    public int maxHP;
+    public int defence;
+    public int hp;
+    public Image HPBarGreen;
 
     private Tile TilePlacedOn;   // Tile that the piece is placed on
 
@@ -36,6 +38,7 @@ public class Piece : MonoBehaviour
     private void Start()
     {
         hp = maxHP;
+        HPBarGreen.fillAmount = (float) hp / maxHP;
         NextMoveTime = 1f / speed;
     }
 
@@ -74,7 +77,9 @@ public class Piece : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         hp -= Mathf.Max(0, dmg);
-        if (hp <= 0) Die();
+        if (hp < 0) hp = 0;
+        HPBarGreen.fillAmount = (float) hp / maxHP;
+        if (hp == 0) Die();
     }
     private void Die()
     {
