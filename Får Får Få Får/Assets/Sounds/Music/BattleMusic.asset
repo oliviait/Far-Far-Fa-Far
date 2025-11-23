@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8656c0b1ecb8343a8d59388bc0a50f, type: 3}
   m_Name: BattleMusic
   m_EditorClassIdentifier: Assembly-CSharp::AudioClipGroup
-  VolumeMin: 1.05
-  VolumeMax: 0.95
+  VolumeMin: 0.18
+  VolumeMax: 0.18
   PitchMin: 1
   PitchMax: 1
   Cooldown: 0.1
