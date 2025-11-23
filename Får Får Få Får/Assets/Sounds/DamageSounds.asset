@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8656c0b1ecb8343a8d59388bc0a50f, type: 3}
-  m_Name: MapMusic
+  m_Name: DamageSounds
   m_EditorClassIdentifier: Assembly-CSharp::AudioClipGroup
   VolumeMin: 1.05
   VolumeMax: 0.95
@@ -18,5 +18,5 @@ MonoBehaviour:
   PitchMax: 1
   Cooldown: 0.1
   Clips:
-  - {fileID: 8300000, guid: fe71d777f87e9e8469d79042972e666b, type: 3}
+  - {fileID: 8300000, guid: 70c9cad6b5a486d4f8a48698af6b7426, type: 3}
   AudioMixerGroup: {fileID: 0}

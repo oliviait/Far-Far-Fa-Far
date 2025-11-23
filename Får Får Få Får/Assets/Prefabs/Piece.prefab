@@ -115,6 +115,8 @@ MonoBehaviour:
   defence: 0
   hp: 0
   HPBarGreen: {fileID: 1265390385921769997}
+  DamageSound: {fileID: 11400000, guid: e75942416fc1a214bb9cb6643a50368d, type: 2}
+  DieSound: {fileID: 11400000, guid: c788d531c9cb60748a01787de21451ba, type: 2}
 --- !u!1001 &4805775161478538710
 PrefabInstance:
   m_ObjectHideFlags: 0

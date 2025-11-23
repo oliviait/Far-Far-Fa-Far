@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 		    Instance = this;
 	    }
         else {
-            DestroyObject(gameObject);
+            Destroy(gameObject);
 	    }
     }
 

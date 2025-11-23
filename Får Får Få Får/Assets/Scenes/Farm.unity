@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MapButton: {fileID: 690492407}
   BreedButton: {fileID: 1061873610}
+  MapCrunch: {fileID: 11400000, guid: 15a6f62eb6c15b948b843e5f6873fc9d, type: 2}
 --- !u!224 &176879697 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8397017736763420812, guid: a616a2d77673643fc90b859e0d0c2d2e, type: 3}

@@ -23,6 +23,9 @@ public class Piece : MonoBehaviour
     public int hp;
     public Image HPBarGreen;
 
+    public AudioClipGroup DamageSound;
+    public AudioClipGroup DieSound;
+
     private Tile TilePlacedOn;   // Tile that the piece is placed on
 
     private float NextMoveTime; // Used to determine, when is this piece's turn
@@ -76,6 +79,7 @@ public class Piece : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        DamageSound.Play();
         hp -= Mathf.Max(0, dmg);
         if (hp < 0) hp = 0;
         HPBarGreen.fillAmount = (float) hp / maxHP;
@@ -83,6 +87,8 @@ public class Piece : MonoBehaviour
     }
     private void Die()
     {
+        DieSound.Play();
+
         if (Owner == Team.Player) NumberOfPlayerPieces--;
         if (Owner == Team.Opponent) NumberOfEnemyPieces--;
 

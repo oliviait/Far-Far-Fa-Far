@@ -7,8 +7,11 @@ public class HUD : MonoBehaviour
     public Button MapButton;
     public Button BreedButton;
 
+    public AudioClipGroup MapCrunch;
+
     public void onMapButtonClicked()
     {
+        MapCrunch.Play();
         SceneManager.LoadScene(1);
     }
 
