@@ -647,8 +647,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Breeding
   SheepPrefab: {fileID: 6896820915681682413, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-  StartingSheep: 6
+  StartingSheep: 4
   GenesNum: 4
+  GenePercentage: 25
+  RandomNames:
+  - Anne-Liine
+  - Kristo
+  - Mirelle
+  - Olivia
+  - Loll Lammas
+  - Anna
+  - Lars
+  - Maria
+  - Anders
+  - Eva
+  - Johan
+  - Karin
+  - Peter
+  - Lena
+  - Jan
   NumSelected: 0
   FirstParent: {fileID: 0}
   SecondParent: {fileID: 0}

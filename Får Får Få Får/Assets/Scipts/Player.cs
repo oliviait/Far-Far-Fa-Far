@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
     public SheepData SheepData;
+    private string sheepSave;
 
     // Player's sheep and corresponding methods
     public List<SheepData> Sheep = new List<SheepData>();
@@ -26,12 +27,29 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        sheepSave = Application.persistentDataPath + "/Sheep.json";
         DontDestroyOnLoad(gameObject);
-        Instance = this;
+        if (Instance == null) {
+		    Instance = this;
+	    }
+        else {
+            DestroyObject(gameObject);
+	    }
+    }
 
-        // HARDCODED FOR NOW
-        AddSheep(SheepData);
-        AddSheep(SheepData);
-        AddSheep(SheepData);
+    public void Save()
+    {
+        string sheep = JsonUtility.ToJson(Sheep);
+        System.IO.File.WriteAllText(sheepSave, sheep);
+    }
+
+    public void Load()
+    {
+        if (System.IO.File.Exists(sheepSave)) Sheep = JsonUtility.FromJson<List<SheepData>>(System.IO.File.ReadAllText(sheepSave));
+    }
+
+    public void NewGame()
+    {
+        Sheep = new List<SheepData>();
     }
 }
