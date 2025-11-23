@@ -682,11 +682,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 83f6079c-ad5a-438a-b7bf-abb7ad9d0fba
+  cloudProjectId: 78f56b5a-afbc-4fc9-b5b5-0032f010f3a2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: "F\xE5r F\xE5r F\xE5 F\xE5r 2025-10-01_12-29-00"
-  organizationId: oliviatennisberg
+  projectName: "F\xE5r F\xE5r F\xE5 F\xE5r"
+  organizationId: mirellem
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
