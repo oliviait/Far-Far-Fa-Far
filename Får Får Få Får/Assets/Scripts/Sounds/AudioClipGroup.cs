@@ -37,10 +37,16 @@ public class AudioClipGroup : ScriptableObject
         timestamp = Time.time + Cooldown;
 
         source.outputAudioMixerGroup = AudioMixerGroup;
-        source.volume = Random.Range(VolumeMin, VolumeMax);
+
+        float baseVolume = 1f;
+        if (AudioSourcePool.Instance != null)
+            baseVolume = AudioSourcePool.Instance.currentSfxVolume;
+
+        source.volume = baseVolume * Random.Range(VolumeMin, VolumeMax);
         source.pitch = Random.Range(PitchMin, PitchMax);
         source.clip = Clips[Random.Range(0, Clips.Count)];
         source.loop = Loop;
         source.Play();
     }
+    
 }

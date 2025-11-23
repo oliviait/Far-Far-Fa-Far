@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MenuButtonActions : MonoBehaviour
 {
     public AudioClipGroup ButtonClick;
+    private object settingsCanvas;
 
     public void ContinueGameButtonPressed()
     {

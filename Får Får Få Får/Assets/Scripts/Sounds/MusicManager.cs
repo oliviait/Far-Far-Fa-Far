@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     public AudioClipGroup MainMenuMusic;
     public AudioClipGroup FarmMusic;
     public AudioClipGroup MapMusic;
@@ -11,12 +13,27 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.sceneLoaded += PlaySceneMusic;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += PlaySceneMusic;
+
+        if (SettingsManager.Instance != null)
+        {
+            MusicAudioSource.volume = SettingsManager.Instance.musicVolume;
+        }
     }
+
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= PlaySceneMusic;
+        if (Instance == this)
+            SceneManager.sceneLoaded -= PlaySceneMusic;
     }
 
     void PlaySceneMusic(Scene scene, LoadSceneMode mode)
@@ -25,5 +42,16 @@ public class AudioManager : MonoBehaviour
         else if (scene.buildIndex == 1) MapMusic.Play(MusicAudioSource);
         else if (scene.buildIndex == 2) BattleMusic.Play(MusicAudioSource);
         else if (scene.buildIndex == 3) MainMenuMusic.Play(MusicAudioSource);
+
+        if (SettingsManager.Instance != null)
+        {
+            MusicAudioSource.volume = SettingsManager.Instance.musicVolume;
+        }
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        if (MusicAudioSource != null)
+            MusicAudioSource.volume = volume;
     }
 }

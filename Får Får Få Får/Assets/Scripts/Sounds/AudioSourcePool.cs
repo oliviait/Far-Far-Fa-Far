@@ -7,6 +7,9 @@ public class AudioSourcePool : MonoBehaviour
 
     public AudioSource AudioSourcePrefab;
     private List<AudioSource> audioSources;
+    [Range(0f, 1f)]
+    public float currentSfxVolume = 1f;
+
 
     private void Awake()
     {
@@ -23,6 +26,21 @@ public class AudioSourcePool : MonoBehaviour
         }
         AudioSource newSource = GameObject.Instantiate(AudioSourcePrefab, transform);
         audioSources.Add(newSource);
+        newSource.volume = currentSfxVolume;
+        audioSources.Add(newSource);
         return newSource;
+       
+
     }
+    public void SetSfxVolume(float volume)
+    {
+        currentSfxVolume = volume;
+
+        foreach (AudioSource src in audioSources)
+        {
+            if (src != null)
+                src.volume = currentSfxVolume;
+        }
+    }
+
 }

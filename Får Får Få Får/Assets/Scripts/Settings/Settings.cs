@@ -13,12 +13,11 @@ public class Settings : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        gameObject.SetActive(scene.buildIndex != 3);    // Disable, if in Menu scene
+        gameObject.SetActive(scene.buildIndex != 3);   
     }
 
-    public void SettingsButtonClicked() // Also connect in editor
+    public void SettingsButtonClicked() 
     {
-        // Show settings panel
     }
 
     private void OnDestroy()
