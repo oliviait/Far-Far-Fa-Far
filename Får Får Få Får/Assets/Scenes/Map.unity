@@ -1402,6 +1402,7 @@ MonoBehaviour:
   OpponentFarmPrefab: {fileID: 6441217683984658458, guid: 27fe3cf79f803294b822c4d7c22336a8, type: 3}
   FarmInfoCanvas: {fileID: 787795002}
   InfoText: {fileID: 735231474}
+  SwordClash: {fileID: 11400000, guid: 75c8bbb2c59bd664187f007e8ffa064b, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class Region : MonoBehaviour
     public Canvas FarmInfoCanvas;
     public TextMeshProUGUI InfoText;
 
+    public AudioClipGroup SwordClash;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +32,7 @@ public class Region : MonoBehaviour
 
     public void onBattleButtonClicked()
     {
+        SwordClash.Play();
         SceneManager.LoadScene(2);
     }
 

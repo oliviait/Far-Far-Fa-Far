@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8656c0b1ecb8343a8d59388bc0a50f, type: 3}
+  m_Name: ButtonClick
+  m_EditorClassIdentifier: Assembly-CSharp::AudioClipGroup
+  VolumeMin: 1.05
+  VolumeMax: 0.95
+  PitchMin: 1
+  PitchMax: 1
+  Cooldown: 0.1
+  Loop: 0
+  Clips:
+  - {fileID: 8300000, guid: 5bed711a3e319ab4dbbc385f7d6d0bf2, type: 3}
+  - {fileID: 8300000, guid: f0799d49992648e43a1be2f062659be1, type: 3}
+  AudioMixerGroup: {fileID: 0}
