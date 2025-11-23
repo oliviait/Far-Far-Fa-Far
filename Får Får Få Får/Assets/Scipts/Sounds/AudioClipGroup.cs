@@ -1,0 +1,44 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
+
+[CreateAssetMenu(menuName = "AudioClipGroup")]
+public class AudioClipGroup : ScriptableObject
+{
+    [Range(0f, 2f)]
+    public float VolumeMin = 1.05f;
+    [Range(0f, 2f)]
+    public float VolumeMax = 0.95f;
+    [Range(0f, 2f)]
+    public float PitchMin = 1f;
+    [Range(0f, 2f)]
+    public float PitchMax = 1f;
+    [Range(0f, 2f)]
+    public float Cooldown = 0.1f;
+    public List<AudioClip> Clips;
+
+    private float timestamp;
+
+    public AudioMixerGroup AudioMixerGroup;
+    private void OnEnable()
+    {
+        timestamp = 0;
+    }
+
+    public void Play()
+    {
+        Play(AudioSourcePool.Instance.GetSource());
+    }
+
+    public void Play(AudioSource source)
+    {
+        if (timestamp > Time.time) return;
+        timestamp = Time.time + Cooldown;
+
+        source.outputAudioMixerGroup = AudioMixerGroup;
+        source.volume = Random.Range(VolumeMin, VolumeMax);
+        source.pitch = Random.Range(PitchMin, PitchMax);
+        source.clip = Clips[Random.Range(0, Clips.Count)];
+        source.Play();
+    }
+}
