@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Game/Sheep")]
 public class SheepData : ScriptableObject
 {
+    public int[] GenesA;
+    public int[] GenesB;
+
     public int maxHP;
     public int DEF;
     public int STR;

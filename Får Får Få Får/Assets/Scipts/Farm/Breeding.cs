@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,10 +12,14 @@ public class Breeding : MonoBehaviour
 
     public int StartingSheep;
     public int GenesNum = 4;
+    public int GenePercentage = 25;
+
+    public List<string> RandomNames = new List<string>();
 
     public int NumSelected;
     public GameObject FirstParent;
     public GameObject SecondParent;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,20 +28,45 @@ public class Breeding : MonoBehaviour
         NumSelected = 0;
         FirstParent = null;
         SecondParent = null;
-        for (int i = 0; i < StartingSheep; i++)
+        if (Player.Instance.Sheep.Count == 0)
         {
-            GameObject sheep = GameObject.Instantiate(SheepPrefab);
-            sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
-            sheep.GetComponent<Genetics>().GenesA = RandomGenes();
-            sheep.GetComponent<Genetics>().GenesB = RandomGenes();
-            sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
+            for (int i = 0; i < StartingSheep; i++)
+            {
+                GameObject sheep = GameObject.Instantiate(SheepPrefab);
+                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+                sheep.GetComponent<Genetics>().GenesA = RandomGenes();
+                sheep.GetComponent<Genetics>().GenesB = RandomGenes();
+                sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
+                sheep.GetComponent<Stats>().Name = RandomNames[UnityEngine.Random.Range(0, RandomNames.Count)];
+                Player.Instance.AddSheep(CreateData(sheep.GetComponent<Genetics>(), sheep.GetComponent<Stats>()));
+            }
+        }
+        else
+        {
+            foreach (SheepData data in Player.Instance.Sheep)
+            {
+                Console.WriteLine("HMM");
+                GameObject sheep = GameObject.Instantiate(SheepPrefab);
+                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+                sheep.GetComponent<Genetics>().GenesA = data.GenesA;
+                sheep.GetComponent<Genetics>().GenesB = data.GenesB;
+                sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
+                sheep.GetComponent<Stats>().Name = data.Name;
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private SheepData CreateData(Genetics genes, Stats stats)
     {
-        
+        SheepData data = ScriptableObject.CreateInstance<SheepData>();
+        data.GenesA = genes.GenesA;
+        data.GenesB = genes.GenesB;
+        data.maxHP = stats.MaxHp;
+        data.STR = stats.Str;
+        data.DEF = stats.Def;
+        data.SPD = stats.Spd;
+        data.Name = stats.Name;
+        return data;
     }
 
     public void Increase(GameObject parent)
@@ -80,7 +111,9 @@ public class Breeding : MonoBehaviour
                 childGenes.GenesB[i] = SetGene(secondParentGenes.GenesA[i], secondParentGenes.GenesB[i]);
             }
             child.GetComponent<Stats>().SetStats(childGenes);
+            child.GetComponent<Stats>().Name = RandomNames[UnityEngine.Random.Range(0, RandomNames.Count)];
             child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+            Player.Instance.AddSheep(CreateData(child.GetComponent<Genetics>(), child.GetComponent<Stats>()));
             FirstParent.GetComponent<Selectable>().Deselect();
             SecondParent.GetComponent<Selectable>().Deselect();
         }
@@ -115,8 +148,8 @@ public class Breeding : MonoBehaviour
         {
             for (int j = 1; j < 1<<15; j *= 2)
             {
-                int add = UnityEngine.Random.Range(0, 4);
-                if (add == 0)
+                int add = UnityEngine.Random.Range(0, 100);
+                if (add < GenePercentage)
                 {
                     genes[i] += j; 
                 }

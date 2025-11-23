@@ -3,6 +3,8 @@ using UnityEngine.Analytics;
 
 public class Stats : MonoBehaviour
 {
+    public string Name;
+
     public int BaseHp = 8;
     public int BaseStr = 4;
     public int BaseDef = 2;
@@ -43,6 +45,6 @@ public class Stats : MonoBehaviour
 
     public override string ToString()
     {
-        return "HP: " + MaxHp + "\nSTR: " + Str + "\nDEF: " + Def + "\nSPD: " + Spd;
+        return Name + "\nHP: " + MaxHp + "\nSTR: " + Str + "\nDEF: " + Def + "\nSPD: " + Spd;
     }
 }
