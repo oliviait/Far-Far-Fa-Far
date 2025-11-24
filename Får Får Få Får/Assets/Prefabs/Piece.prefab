@@ -119,8 +119,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4541450449114066838}
   - {fileID: 8792950610485881733}
+  - {fileID: 4541450449114066838}
   - {fileID: 1921132417960843399}
   m_Father: {fileID: 5926429724780247947}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -410,10 +410,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Piece
   Owner: 0
-  Parent: {fileID: 8980580078919084938}
-  sr: {fileID: 1508996832950294064}
   powerConstant: 1
   Range: 1
+  Head: {fileID: 6661760815360015202}
+  Body: {fileID: 1321735327298031215}
+  Legs: {fileID: 8803826311583054113}
   speed: 0
   strength: 0
   maxHP: 0

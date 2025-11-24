@@ -8,6 +8,8 @@ public class EnemyData : ScriptableObject
     public int STR;
     public int SPD;
 
-    public Sprite Sprite;
+    public Sprite HeadSprite;
+    public Sprite BodySprite;
+    public Sprite LegsSprite;
     public string Name;
 }

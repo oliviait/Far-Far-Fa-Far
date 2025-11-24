@@ -16,5 +16,7 @@ MonoBehaviour:
   DEF: 1
   STR: 1
   SPD: 2
-  Sprite: {fileID: -2413806693520163455, guid: b2a46e58255023641b7359bf2ebd53f1, type: 3}
+  HeadSprite: {fileID: -7598902254939431746, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  BodySprite: {fileID: -3392848610080769739, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  LegsSprite: {fileID: 5207399616574175175, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   Name: Cow

@@ -8,13 +8,14 @@ public class Piece : MonoBehaviour
     public enum Team { Player, Opponent }
     public Team Owner;
 
-    public GameObject Parent;
-    
-    public SpriteRenderer sr;
-
     // Data
     public float powerConstant = 1; // Attack power constant used for damage calculations
     public int Range = 1;   // Movement range
+
+    public GameObject Head;
+    public GameObject Body;
+    public GameObject Legs;
+
 
     public int speed;
     public int strength;
@@ -62,7 +63,9 @@ public class Piece : MonoBehaviour
         maxHP = data.maxHP;
         defence = data.DEF;
 
-        sr.sprite = data.Sprite;
+        Head.GetComponent<SpriteRenderer>().sprite = data.HeadSprite;
+        Body.GetComponent<SpriteRenderer>().sprite = data.BodySprite;
+        Legs.GetComponent<SpriteRenderer>().sprite = data.LegsSprite;
         Owner = Team.Player;
     }
 
@@ -73,7 +76,9 @@ public class Piece : MonoBehaviour
         maxHP = data.maxHP;
         defence = data.DEF;
 
-        sr.sprite = data.Sprite;
+        Head.GetComponent<SpriteRenderer>().sprite = data.HeadSprite;
+        Body.GetComponent<SpriteRenderer>().sprite = data.BodySprite;
+        Legs.GetComponent<SpriteRenderer>().sprite = data.LegsSprite;
         Owner = Team.Opponent;
     }
 
