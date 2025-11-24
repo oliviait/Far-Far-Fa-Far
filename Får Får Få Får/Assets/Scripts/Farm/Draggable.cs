@@ -16,7 +16,7 @@ public class Draggable : MonoBehaviour
     {
         if (inInventory)
         {
-            pos = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+            pos = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2f, 4f), 0f);
             transform.position = pos;
             inventorySlot.ClearSlot();
             inInventory = false;
