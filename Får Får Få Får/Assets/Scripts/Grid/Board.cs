@@ -5,6 +5,10 @@ public class Board : MonoBehaviour
 {
     public static Board Instance;
 
+    public AudioClipGroup SheepMusic;
+    public AudioClipGroup PigMusic;
+    public AudioClipGroup CowMusic;
+
     // Tile
     public Tile TilePrefab;
     public float TileScaleY;
@@ -51,7 +55,9 @@ public class Board : MonoBehaviour
             Debug.Log("BATTLECONTROLLER GOT NULL DATA");
             return;
         }
-
+        if (ofd.Species == "Sheep") AudioManager.Instance.BattleMusic = SheepMusic;
+        else if (ofd.Species == "Cow") AudioManager.Instance.BattleMusic = CowMusic;
+        else if (ofd.Species == "Pig") AudioManager.Instance.BattleMusic = PigMusic;
         opponentFarmData = ofd;
         BoardSizeX = ofd.BoardSizeX;
         BoardSizeY = ofd.BoardSizeY;

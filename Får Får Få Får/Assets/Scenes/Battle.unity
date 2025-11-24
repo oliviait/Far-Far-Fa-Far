@@ -642,6 +642,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00276e8f6f3b7f48a2e5bfdabff200f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  SheepMusic: {fileID: 11400000, guid: c4f7f13a4d68b6940b0064ec7d91a557, type: 2}
+  PigMusic: {fileID: 11400000, guid: f3deb88a9de0b6c498736968218746b4, type: 2}
+  CowMusic: {fileID: 11400000, guid: 5833f63e0240f3e4898eea62a5881501, type: 2}
   TilePrefab: {fileID: 716953727275325512, guid: 07824115652282940a2bff1e49b7ba2f, type: 3}
   TileScaleY: 1.4
   TileScaleX: 2
