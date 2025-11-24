@@ -16,6 +16,7 @@ public class CheckStats : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (displayStats == null) return;
         displayStats.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
         if (gameObject.transform.position.x > 5)
         {

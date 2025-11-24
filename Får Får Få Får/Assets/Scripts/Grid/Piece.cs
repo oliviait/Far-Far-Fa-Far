@@ -87,25 +87,24 @@ public class Piece : MonoBehaviour
     }
     private void Die()
     {
-        DieSound.Play();
-
         if (Owner == Team.Player) NumberOfPlayerPieces--;
-        if (Owner == Team.Opponent) NumberOfEnemyPieces--;
+        else NumberOfEnemyPieces--;
 
         TilePlacedOn.SetOccupant(null);
 
+        // Check win/lose BEFORE destroying the piece
+        if (NumberOfPlayerPieces == 0)
+            Events.BattleLost();
+        else if (NumberOfEnemyPieces == 0)
+            Events.BattleWon();
+
         Destroy(gameObject);
     }
+
 
     public void Attack(Piece target)
     {
         int damage = (int) (powerConstant * (float) strength / (float) target.defence);
         target.TakeDamage(damage);
-    }
-
-    private void OnDestroy()
-    {
-        if (NumberOfPlayerPieces == 0) Events.BattleLost();
-        else if (NumberOfEnemyPieces == 0) Events.BattleWon();
     }
 }

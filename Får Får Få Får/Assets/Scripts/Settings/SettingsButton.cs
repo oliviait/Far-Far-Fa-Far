@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,6 @@ public class SettingsButton : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
