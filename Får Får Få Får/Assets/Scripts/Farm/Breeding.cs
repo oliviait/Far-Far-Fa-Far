@@ -71,12 +71,13 @@ public class Breeding : MonoBehaviour
                     icon = sheep.GetComponent<SpriteRenderer>().sprite,
                     originalObject = sheep
                 };
-                InventorySlot slot = InventoryManager.Instance.slots[counter++];
+                InventorySlot slot = InventoryManager.Instance.slots[counter];
                 slot.SetItem(newItem);
                 sheep.GetComponent<Draggable>().inInventory = true;
                 sheep.GetComponent<Draggable>().inventorySlot = slot;
-                BoxCollider2D slotCollider = slot.gameObject.GetComponent<BoxCollider2D>();
-                sheep.transform.position = slotCollider.transform.position;
+                Vector3 pos = new(-3.75f, -3.5f, 0);
+                sheep.transform.position = pos + new Vector3(counter * 1.875f, 0, 0);
+                counter++;
             }
         }
     }
