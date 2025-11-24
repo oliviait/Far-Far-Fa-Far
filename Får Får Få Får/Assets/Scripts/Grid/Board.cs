@@ -135,14 +135,14 @@ public class Board : MonoBehaviour
         counter = 0;
         foreach (Vector2Int pos in opponentFarmData.PlayerSpawnLocations)
         {
-            if (counter >= Player.Instance.Sheep.Count) return;  // If player doesn't have enough sheep in inv
+            if (counter >= Player.Instance.InventorySheep.Count) return;  // If player doesn't have enough sheep in inv
 
             Piece piece = GameObject.Instantiate<Piece>(PiecePrefab);
             Tile tile = BoardTiles[pos.y, pos.x];
 
             tile.SetOccupant(piece);
             piece.transform.position = tile.transform.position;
-            piece.SetData(Player.Instance.Sheep[counter]);
+            piece.SetData(Player.Instance.InventorySheep[counter]);
             Piece.NumberOfPlayerPieces++;
             piece.SetTilePlacedOn(tile);  // Link piece to tile it's placed on
             counter++;

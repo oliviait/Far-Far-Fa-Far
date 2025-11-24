@@ -3,6 +3,8 @@ using UnityEngine.Analytics;
 
 public class Stats : MonoBehaviour
 {
+    public SheepData Data;
+
     public string Name;
 
     public int BaseHp = 8;

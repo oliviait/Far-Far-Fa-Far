@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     // Player's sheep and corresponding methods
     public List<SheepData> Sheep = new List<SheepData>();
+    public List<SheepData> InventorySheep = new List<SheepData>();
 
     public void AddSheep(SheepData data) => Sheep.Add(data);
     public void InsertSheep(SheepData data, int i)
@@ -19,6 +20,18 @@ public class Player : MonoBehaviour
     }
     public void RemoveSheep(SheepData data) => Sheep.Remove(data);
     public void RemoveSheep(int i) => Sheep.RemoveAt(i);
+
+    public void AddToInventory(SheepData data, int i)
+    {
+        if (i >= InventorySheep.Count) InventorySheep.Add(data);
+        else InventorySheep.Insert(i, data);
+        RemoveSheep(data);
+    }
+    public void RemoveFromInventory(SheepData data)
+    {
+        InventorySheep.Remove(data);
+        AddSheep(data);
+    }
 
 
 

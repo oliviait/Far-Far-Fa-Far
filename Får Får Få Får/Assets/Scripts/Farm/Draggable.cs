@@ -3,14 +3,9 @@ using UnityEngine;
 public class Draggable : MonoBehaviour
 {
     private bool isDragging;
-    private bool inInventory;
-    private InventorySlot inventorySlot;
+    public bool inInventory;
+    public InventorySlot inventorySlot;
     private Vector3 pos;
-
-    private void Start()
-    {
-        inInventory = false;
-    }
 
     public void OnMouseDown()
     {
@@ -20,6 +15,7 @@ public class Draggable : MonoBehaviour
             transform.position = pos;
             inventorySlot.ClearSlot();
             inInventory = false;
+            Player.Instance.RemoveFromInventory(gameObject.GetComponent<Stats>().Data);
             if (gameObject.GetComponent<Selectable>().Selected)
             {
                 gameObject.GetComponent<Selectable>().Deselect();
@@ -55,7 +51,7 @@ public class Draggable : MonoBehaviour
                 InventoryItem newItem = new InventoryItem
                 {
                     itemName = gameObject.name,
-                    icon = gameObject.GetComponent<Sprite>(),
+                    icon = gameObject.GetComponent<SpriteRenderer>().sprite,
                     originalObject = gameObject
                 };
                 slot.SetItem(newItem);
@@ -68,6 +64,7 @@ public class Draggable : MonoBehaviour
                 {
                     gameObject.GetComponent<Selectable>().Deselect();
                 }
+                Player.Instance.AddToInventory(gameObject.GetComponent<Stats>().Data, slot.ID);
             }
         }
     }
