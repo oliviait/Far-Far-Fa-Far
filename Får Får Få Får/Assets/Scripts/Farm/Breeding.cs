@@ -75,7 +75,8 @@ public class Breeding : MonoBehaviour
                 slot.SetItem(newItem);
                 sheep.GetComponent<Draggable>().inInventory = true;
                 sheep.GetComponent<Draggable>().inventorySlot = slot;
-                sheep.transform.position = slot.gameObject.GetComponent<BoxCollider2D>().bounds.center;
+                BoxCollider2D slotCollider = slot.gameObject.GetComponent<BoxCollider2D>();
+                sheep.transform.position = slotCollider.transform.position;
             }
         }
     }
