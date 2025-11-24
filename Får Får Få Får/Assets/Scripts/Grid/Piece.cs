@@ -92,6 +92,8 @@ public class Piece : MonoBehaviour
     }
     private void Die()
     {
+        DieSound.Play();
+
         if (Owner == Team.Player) NumberOfPlayerPieces--;
         else NumberOfEnemyPieces--;
 
