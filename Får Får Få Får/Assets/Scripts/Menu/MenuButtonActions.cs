@@ -11,7 +11,7 @@ public class MenuButtonActions : MonoBehaviour
     {
         ButtonClick.Play();
         Player.Instance.Load();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
     }
 
@@ -19,7 +19,7 @@ public class MenuButtonActions : MonoBehaviour
     {
         Player.Instance.NewGame();
         ButtonClick.Play();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void OptionsButtonPressed()

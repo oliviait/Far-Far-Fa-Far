@@ -5,6 +5,6 @@ public class BattleController : MonoBehaviour
 {
     public void onBackToFarmButtonClicked()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

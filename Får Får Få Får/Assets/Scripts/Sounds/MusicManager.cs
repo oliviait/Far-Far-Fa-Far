@@ -38,10 +38,10 @@ public class AudioManager : MonoBehaviour
 
     void PlaySceneMusic(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0) FarmMusic.Play(MusicAudioSource);
-        else if (scene.buildIndex == 1) MapMusic.Play(MusicAudioSource);
-        else if (scene.buildIndex == 2) BattleMusic.Play(MusicAudioSource);
-        else if (scene.buildIndex == 3) MainMenuMusic.Play(MusicAudioSource);
+        if (scene.buildIndex == 1) FarmMusic.Play(MusicAudioSource);
+        else if (scene.buildIndex == 2) MapMusic.Play(MusicAudioSource);
+        else if (scene.buildIndex == 3) BattleMusic.Play(MusicAudioSource);
+        else if (scene.buildIndex == 0) MainMenuMusic.Play(MusicAudioSource);
 
         if (SettingsManager.Instance != null)
         {
