@@ -9,7 +9,7 @@ public class Piece : MonoBehaviour
     public Team Owner;
 
     // Data
-    public float powerConstant = 1; // Attack power constant used for damage calculations
+    public float powerConstant = 5; // Attack power constant used for damage calculations
     public int Range = 1;   // Movement range
 
     public GameObject Head;
@@ -110,6 +110,6 @@ public class Piece : MonoBehaviour
     public void Attack(Piece target)
     {
         int damage = (int) (powerConstant * (float) strength / (float) target.defence);
-        target.TakeDamage(damage);
+        target.TakeDamage(Mathf.Max(damage, 1));
     }
 }
