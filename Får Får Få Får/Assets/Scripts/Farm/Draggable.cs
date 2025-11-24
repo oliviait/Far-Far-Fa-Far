@@ -15,6 +15,7 @@ public class Draggable : MonoBehaviour
             transform.position = pos;
             inventorySlot.ClearSlot();
             inInventory = false;
+            inventorySlot = null;
             Player.Instance.RemoveFromInventory(gameObject.GetComponent<Stats>().Data);
             if (gameObject.GetComponent<Selectable>().Selected)
             {
@@ -42,6 +43,10 @@ public class Draggable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (inventorySlot)
+        {
+            return;
+        }
         var slot = other.GetComponent<InventorySlot>();
         if (slot != null)
         {   
