@@ -60,11 +60,17 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("GameSoundsVolume", gameSoundsVolume);
         PlayerPrefs.Save();
+        SettingsButton.Instance.Close();
     }
 
     void LoadSettings()
     {
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         gameSoundsVolume = PlayerPrefs.GetFloat("GameSoundsVolume", 1f);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
