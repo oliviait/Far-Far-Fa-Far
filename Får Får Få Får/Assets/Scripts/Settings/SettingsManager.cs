@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -69,8 +70,11 @@ public class SettingsManager : MonoBehaviour
         gameSoundsVolume = PlayerPrefs.GetFloat("GameSoundsVolume", 1f);
     }
 
-    public void Quit()
+    public void BackToMenu()
     {
-        Application.Quit();
+        SettingsButton.Instance.Close();
+        
+        // TODO save game state
+        SceneManager.LoadScene(0);
     }
 }

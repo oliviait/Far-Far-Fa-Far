@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +24,6 @@ public class MenuButtonActions : MonoBehaviour
     public void OptionsButtonPressed()
     {
         ButtonClick.Play();
-        return;
     }
 
     public void ExitGameButtonPressed()

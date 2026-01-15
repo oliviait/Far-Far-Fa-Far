@@ -14,7 +14,7 @@ public class SettingsUI : MonoBehaviour
             gameSoundsSlider.value = SettingsManager.Instance.gameSoundsVolume;
         }
     }
-
+    
 
     public void OnMusicSliderChanged(float value)
     {
