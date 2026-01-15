@@ -28,36 +28,64 @@ public class Breeding : MonoBehaviour
         NumSelected = 0;
         FirstParent = null;
         SecondParent = null;
-        if (Player.Instance.Sheep.Count == 0)
+        if (Player.Instance.Sheep.Count + Player.Instance.InventorySheep.Count == 0)
         {
             for (int i = 0; i < StartingSheep; i++)
             {
                 GameObject sheep = GameObject.Instantiate(SheepPrefab);
-                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2f, 4f), 0f);
                 sheep.GetComponent<Genetics>().GenesA = RandomGenes();
                 sheep.GetComponent<Genetics>().GenesB = RandomGenes();
                 sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
                 sheep.GetComponent<Stats>().Name = RandomNames[UnityEngine.Random.Range(0, RandomNames.Count)];
-                Player.Instance.AddSheep(CreateData(sheep.GetComponent<Genetics>(), sheep.GetComponent<Stats>()));
+                sheep.GetComponent<Stats>().Data = CreateData(sheep);
+                sheep.GetComponent<Draggable>().inInventory = false;
+                Player.Instance.AddSheep(sheep.GetComponent<Stats>().Data);
             }
         }
         else
         {
             foreach (SheepData data in Player.Instance.Sheep)
             {
-                Console.WriteLine("HMM");
                 GameObject sheep = GameObject.Instantiate(SheepPrefab);
-                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
+                sheep.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2f, 4f), 0f);
                 sheep.GetComponent<Genetics>().GenesA = data.GenesA;
                 sheep.GetComponent<Genetics>().GenesB = data.GenesB;
                 sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
                 sheep.GetComponent<Stats>().Name = data.Name;
+                sheep.GetComponent<Stats>().Data = data;
+                sheep.GetComponent<Draggable>().inInventory = false;
+            }
+            int counter = 0;
+            foreach (SheepData data in Player.Instance.InventorySheep)
+            {
+                GameObject sheep = GameObject.Instantiate(SheepPrefab);
+                sheep.GetComponent<Genetics>().GenesA = data.GenesA;
+                sheep.GetComponent<Genetics>().GenesB = data.GenesB;
+                sheep.GetComponent<Stats>().SetStats(sheep.GetComponent<Genetics>());
+                sheep.GetComponent<Stats>().Name = data.Name;
+                sheep.GetComponent<Stats>().Data = data;
+                InventoryItem newItem = new InventoryItem
+                {
+                    itemName = sheep.name,
+                    icon = sheep.GetComponent<SpriteRenderer>().sprite,
+                    originalObject = sheep
+                };
+                InventorySlot slot = InventoryManager.Instance.slots[counter];
+                slot.SetItem(newItem);
+                sheep.GetComponent<Draggable>().inInventory = true;
+                sheep.GetComponent<Draggable>().inventorySlot = slot;
+                Vector3 pos = new(-3.75f, -3.5f, 0);
+                sheep.transform.position = pos + new Vector3(counter * 1.875f, 0, 0);
+                counter++;
             }
         }
     }
 
-    private SheepData CreateData(Genetics genes, Stats stats)
+    public SheepData CreateData(GameObject sheep)
     {
+        Genetics genes = sheep.GetComponent<Genetics>();
+        Stats stats = sheep.GetComponent<Stats>();
         SheepData data = ScriptableObject.CreateInstance<SheepData>();
         data.GenesA = genes.GenesA;
         data.GenesB = genes.GenesB;
@@ -66,6 +94,9 @@ public class Breeding : MonoBehaviour
         data.DEF = stats.Def;
         data.SPD = stats.Spd;
         data.Name = stats.Name;
+        data.HeadSprite = sheep.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        data.LegsSprite = sheep.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite;
+        data.BodySprite = sheep.GetComponent<SpriteRenderer>().sprite;
         return data;
     }
 
@@ -112,8 +143,9 @@ public class Breeding : MonoBehaviour
             }
             child.GetComponent<Stats>().SetStats(childGenes);
             child.GetComponent<Stats>().Name = RandomNames[UnityEngine.Random.Range(0, RandomNames.Count)];
-            child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2.5f, 4f), 0f);
-            Player.Instance.AddSheep(CreateData(child.GetComponent<Genetics>(), child.GetComponent<Stats>()));
+            child.transform.position = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-2f, 4f), 0f);
+            child.GetComponent<Stats>().Data = CreateData(child);
+            Player.Instance.AddSheep(child.GetComponent<Stats>().Data);
             FirstParent.GetComponent<Selectable>().Deselect();
             SecondParent.GetComponent<Selectable>().Deselect();
         }

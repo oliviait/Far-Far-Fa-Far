@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
-    [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
+    public List<InventorySlot> slots = new List<InventorySlot>();
 
     private void Awake()
     {
@@ -13,10 +13,11 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-
+        int counter = 0;
         foreach (var slot in slots)
         {
             slot.ClearSlot();
+            slot.ID = counter++;
         }
     }
     public bool AddItem(InventoryItem item)

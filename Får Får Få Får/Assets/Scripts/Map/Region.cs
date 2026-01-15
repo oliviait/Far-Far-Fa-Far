@@ -33,11 +33,11 @@ public class Region : MonoBehaviour
     public void onBattleButtonClicked()
     {
         SwordClash.Play();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void onBackButtonClicked()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

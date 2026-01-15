@@ -18,7 +18,7 @@ public class SettingsButton : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        gameObject.SetActive(scene.buildIndex != 3);
+        gameObject.SetActive(scene.buildIndex != 0);
     }
 
     public void Open()

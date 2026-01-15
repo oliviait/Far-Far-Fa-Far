@@ -6,6 +6,8 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image iconImage;
     public InventoryItem currentItem;
 
+    public int ID;
+
     public bool HasItem => currentItem != null;
 
     public void SetItem(InventoryItem item)
