@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance { get; private set; }
+    public GameObject settingsPanel;
+    public GameObject settingsButton;
 
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float gameSoundsVolume = 1f;
@@ -18,9 +20,33 @@ public class SettingsManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         LoadSettings();
         ApplyVolumes();
+    }
+    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        settingsButton.SetActive(scene.buildIndex != 0);
+    }
+
+    public void Open()
+    {
+        settingsPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Close()
+    {
+        settingsPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void SetMusicVolume(float value)
@@ -61,7 +87,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("GameSoundsVolume", gameSoundsVolume);
         PlayerPrefs.Save();
-        SettingsButton.Instance.Close();
+        Close();
     }
 
     void LoadSettings()
@@ -72,7 +98,7 @@ public class SettingsManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        SettingsButton.Instance.Close();
+        Close();
         
         // TODO save game state
         SceneManager.LoadScene(0);

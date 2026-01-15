@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f30e637ed1bd864ca44bbc0e9dd0e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
+  settingsPanel: {fileID: 1774766142}
   musicVolume: 1
   gameSoundsVolume: 1
 --- !u!4 &1441692930
@@ -2866,14 +2867,14 @@ PrefabInstance:
     - target: {fileID: 6597191414983777191, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2428737239199126465}
+      objectReference: {fileID: 1441692929}
     - target: {fileID: 6597191414983777191, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Open
       objectReference: {fileID: 0}
     - target: {fileID: 6597191414983777191, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsButton, Assembly-CSharp
+      value: SettingsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

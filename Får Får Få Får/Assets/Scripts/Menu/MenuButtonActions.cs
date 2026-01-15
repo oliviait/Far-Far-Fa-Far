@@ -23,6 +23,7 @@ public class MenuButtonActions : MonoBehaviour
 
     public void OptionsButtonPressed()
     {
+        SettingsManager.Instance.Open();
         ButtonClick.Play();
     }
 
