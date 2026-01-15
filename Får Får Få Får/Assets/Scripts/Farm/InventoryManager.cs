@@ -4,11 +4,12 @@ using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
-    public List<InventorySlot> slots = new List<InventorySlot>();
+    public List<InventorySlot> slots = new();
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance && Instance != this) Destroy(gameObject);
+        else Instance = this;
     }
 
     private void Start()
@@ -22,8 +23,6 @@ public class InventoryManager : MonoBehaviour
     }
     public bool AddItem(InventoryItem item)
     {
-        
-
         foreach (var slot in slots)
         {
             if (!slot.HasItem)

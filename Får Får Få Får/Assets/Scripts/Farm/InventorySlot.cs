@@ -1,32 +1,31 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    [SerializeField] private Image iconImage;
+    public GameObject Icon;
+    private SpriteRenderer SpriteRenderer;
     public InventoryItem currentItem;
 
     public int ID;
 
     public bool HasItem => currentItem != null;
 
+    private void Awake()
+    {
+        SpriteRenderer = Icon.GetComponent<SpriteRenderer>();
+    }
+
     public void SetItem(InventoryItem item)
     {
         currentItem = item;
-        iconImage.sprite = item.icon;
-        iconImage.enabled = true;
+        SpriteRenderer.sprite = item.icon;
+        SpriteRenderer.enabled = true;
     }
 
     public void ClearSlot()
     {
         currentItem = null;
-        iconImage.sprite = null;
-        iconImage.enabled = false;
-    }
-
-    private void Reset()
-    {
-        if (iconImage == null)
-            iconImage = transform.Find("Icon")?.GetComponent<Image>();
+        SpriteRenderer.sprite = null;
+        SpriteRenderer.enabled = false;
     }
 }

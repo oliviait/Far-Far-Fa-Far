@@ -809,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 2086365883693779916, guid: 8102bc936a01793419bf38a8ca8b4e83, type: 3}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -826,7 +826,7 @@ PrefabInstance:
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2428737239199126465}
+      objectReference: {fileID: 227090124}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -841,7 +841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Open
+      value: OptionsButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -849,7 +849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SettingsButton, Assembly-CSharp
+      value: MenuButtonActions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7114093595086751185, guid: 5b06691c093d7fc499e54e31896e3f8d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1053,6 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
   settingsPanel: {fileID: 1774766142}
+  settingsButton: {fileID: 685254997}
   musicVolume: 1
   gameSoundsVolume: 1
 --- !u!4 &1441692930
@@ -1916,19 +1917,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2595933694517863665, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
   m_PrefabInstance: {fileID: 8465180980595959702}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2428737239199126465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685254997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5705fbd3bffd4224999b6692e80868fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Settings
-  settingsPanel: {fileID: 1774766142}
 --- !u!222 &2466111092103928604
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2227,8 +2215,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2428737239199126465}
-        m_TargetAssemblyTypeName: SettingsButton, Assembly-CSharp
+      - m_Target: {fileID: 1441692929}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
         m_Arguments:
@@ -2879,10 +2867,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 492174557507049115, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 2428737239199126465}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d5cab6dc07862044957abc1edb1284b, type: 3}
 --- !u!222 &8534893201148631271
 CanvasRenderer:
