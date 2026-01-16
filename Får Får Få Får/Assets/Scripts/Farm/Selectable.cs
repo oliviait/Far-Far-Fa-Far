@@ -23,7 +23,7 @@ public class Selectable : MonoBehaviour
         {
             Deselect();
         }
-        else if (Breeding.Instance.NumSelected < 2)
+        else if (Breeding.Instance.numSelected < 2)
         {
             Select();
         }

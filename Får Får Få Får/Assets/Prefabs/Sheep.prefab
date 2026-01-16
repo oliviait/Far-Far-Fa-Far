@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 3359257117080636110, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  m_Sprite: {fileID: 5207399616574175175, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 2713087617109129063, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  m_Sprite: {fileID: -8615784880399284550, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 2169305034126282154}
   - component: {fileID: 8967515340303915137}
   - component: {fileID: 1650079318459314963}
+  - component: {fileID: 8144159579541500935}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -267,7 +268,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 6471774181469947736, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  m_Sprite: {fileID: -3392848610080769739, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -396,3 +397,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.2
+--- !u!114 &8144159579541500935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896820915681682413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864a0638fcbcfd645a28481e64d867fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteSwapper
+  Body: {fileID: 6896820915681682413}
+  Head: {fileID: 6626594657996982989}
+  Legs: {fileID: 2527398486169063311}
+  DEFChangeStep: 10
+  STRChangeStep: 10
+  HPChangeStep: 10
+  SPDChangeStep: 10
+  sheepSpriteGroup: {fileID: 0}

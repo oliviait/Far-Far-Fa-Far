@@ -349,8 +349,8 @@ TextureImporter:
         y: 501
         width: 68
         height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49415487, y: 0.31290495}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,8 +393,8 @@ TextureImporter:
         y: 500
         width: 79
         height: 54
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4978375, y: 0.2720269}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,8 +415,8 @@ TextureImporter:
         y: 499
         width: 81
         height: 67
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5866055, y: 0.3214102}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -433,7 +433,7 @@ TextureImporter:
       name: Sheep_Spritesheet_5
       rect:
         serializedVersion: 2
-        x: 388
+        x: 389
         y: 500
         width: 152
         height: 68
@@ -942,7 +942,7 @@ TextureImporter:
         x: 551
         y: 366
         width: 34
-        height: 40
+        height: 38
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

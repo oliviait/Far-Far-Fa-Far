@@ -30,8 +30,8 @@ RectTransform:
   m_GameObject: {fileID: 4573652034822950219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,12 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9665d4797d9b4901a82ca6976239c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  Icon: {fileID: 0}
-  currentItem:
-    itemName: 
-    icon: {fileID: 0}
-    originalObject: {fileID: 0}
-  ID: 0
+  i: 0
+  currentItem: {fileID: 0}
 --- !u!61 &-7344907816905806859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96,13 +92,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 8.87, y: 8.83}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9, y: 9}
   m_EdgeRadius: 0
 --- !u!212 &2383828332230261041
 SpriteRenderer:
@@ -151,8 +147,8 @@ SpriteRenderer:
   m_SortingLayerID: -444059613
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: e58eb18c796997648b181679ffb26f1d, type: 3}
-  m_Color: {r: 0.24705882, g: 0.16470589, b: 0.08627451, a: 1}
+  m_Sprite: {fileID: -6351300161770192145, guid: 90eba270cc7ecee48a7ca7d793f0be32, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

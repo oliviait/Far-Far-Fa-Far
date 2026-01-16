@@ -228,63 +228,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a616a2d77673643fc90b859e0d0c2d2e, type: 3}
---- !u!1001 &159489649
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6896820915681682413, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_Name
-      value: Sheep
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.84269
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.0271227
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7527323743411406181, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
 --- !u!1 &163702893
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +461,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7976987746457712408, guid: 35786cd3d3ba8c24db092e084e245266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1355,9 +1298,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0, y: 0.7}
       - {x: -5.8510566, y: 0.709017}
-      - {x: -7.6956778, y: -1.9691895}
-      - {x: -0.5877852, y: -2.009017}
-      - {x: 6.8877854, y: -2.009017}
+      - {x: -7.995678, y: -2.4691896}
+      - {x: -0.6877852, y: -2.509017}
+      - {x: 7.1877856, y: -2.409017}
       - {x: 4.8510566, y: 0.70901716}
   m_UseDelaunayMesh: 0
 --- !u!1001 &757809958
@@ -1877,7 +1820,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: -6224868876259628551, guid: de057f8069e233549a9c6b5e3cc1ed2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1995,7 +1938,7 @@ Transform:
   m_GameObject: {fileID: 1759536361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6198238, y: 3.5132546, z: 0}
+  m_LocalPosition: {x: -0.6198238, y: -0.1867454, z: 0}
   m_LocalScale: {x: 1.1, y: 1.2, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2048,7 +1991,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3971718580040639144, guid: 2b219d9a7f84e444a8b9f5f4fed3dbad, type: 3}
+  m_Sprite: {fileID: -4948749034281803180, guid: a9518b9d62a38fe49945900e10f2b32a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2088,35 +2031,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5425aee246ab2b041857d0703f2c642d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Breeding
-  SheepPrefab: {fileID: 6896820915681682413, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
-  StartingSheep: 4
-  GenesNum: 4
-  GenePercentage: 25
-  RandomNames:
+  sheepPrefab: {fileID: 6896820915681682413, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
+  genesNum: 4
+  genePercentage: 25
+  randomNames:
   - Kristo
-  - Olivia
   - Mirelle
   - Anne-Liine
-  - Loll Lammas
-  - Tark Lammas
-  - Laura
+  - Olivia
   - Rando
-  - Jonzu
-  - Louise
+  - Laura
+  - Timm
+  - Jonathan
   - Christopher
-  - Villu
-  - Karin
-  - Lumi
-  - "L\xE4kum\xE4tas"
-  - FarFarFar
+  - Ralf
+  - Manfred
+  - Rauno
+  - Louise
+  - "M\xE4tas"
   - "B\xE4\xE4\xE4\xE4"
-  - Lambo
-  - Priidik
+  - Lammas
+  - Tark Lammas
+  - Loll Lammas
   - Vortox
   - Pukka
-  NumSelected: 0
-  FirstParent: {fileID: 0}
-  SecondParent: {fileID: 0}
+  numSelected: 0
+  firstParent: {fileID: 0}
+  secondParent: {fileID: 0}
 --- !u!4 &1909783352
 Transform:
   m_ObjectHideFlags: 0
@@ -2158,7 +2099,7 @@ Transform:
   m_GameObject: {fileID: 2095080311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6198238, y: -2.8867455, z: 0}
+  m_LocalPosition: {x: -0.6198238, y: -2.1867454, z: 0}
   m_LocalScale: {x: 1.1, y: 1.2, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2211,7 +2152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -777437112, guid: 2b219d9a7f84e444a8b9f5f4fed3dbad, type: 3}
+  m_Sprite: {fileID: 6018889279038990185, guid: 8cc73852068a9cb45b42c9623e9b56b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2222,6 +2163,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2103379652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2103379654}
+  - component: {fileID: 2103379653}
+  m_Layer: 0
+  m_Name: SheepSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2103379653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103379652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0204207430192bc4ba97b285b79f908d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  boundsCollider: {fileID: 735905158}
+  sheepPrefab: {fileID: 6896820915681682413, guid: eaecfba0057e96a40b4ab127a92af7fe, type: 3}
+  sheepSpriteGroups:
+  - {fileID: 11400000, guid: f4bc15bc176397a4c9266a096fefda19, type: 2}
+  - {fileID: 11400000, guid: 01439c71219f6114b8abe5c193664af8, type: 2}
+  - {fileID: 11400000, guid: c3b0ba0377b338f44bf1dceb06ed7ebe, type: 2}
+  - {fileID: 11400000, guid: ec6c0731442e10843819dd99c21e3bb0, type: 2}
+  startingSheep: 5
+--- !u!4 &2103379654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103379652}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2105861418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,4 +2295,4 @@ SceneRoots:
   - {fileID: 242028315}
   - {fileID: 2105861419}
   - {fileID: 1909783352}
-  - {fileID: 159489649}
+  - {fileID: 2103379654}
