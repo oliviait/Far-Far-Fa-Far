@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,32 +8,8 @@ public class Player : MonoBehaviour
     private string sheepSave;
 
     // Player's sheep and corresponding methods
-    public List<SheepData> Sheep = new List<SheepData>();
-    public List<SheepData> InventorySheep = new List<SheepData>();
-
-    public void AddSheep(SheepData data) => Sheep.Add(data);
-    public void InsertSheep(SheepData data, int i)
-    {
-        if (i >= Sheep.Count) Sheep.Add(data);
-        else Sheep.Insert(i, data);
-    }
-    public void RemoveSheep(SheepData data) => Sheep.Remove(data);
-    public void RemoveSheep(int i) => Sheep.RemoveAt(i);
-
-    public void AddToInventory(SheepData data, int i)
-    {
-        if (i >= InventorySheep.Count) InventorySheep.Add(data);
-        else InventorySheep.Insert(i, data);
-        RemoveSheep(data);
-    }
-    public void RemoveFromInventory(SheepData data)
-    {
-        InventorySheep.Remove(data);
-        AddSheep(data);
-    }
-
-
-
+    public List<SheepData> SheepOnFarmList = new();
+    public List<SheepData> InventorySheepList = new();
     // Game progress
     public OpponentFarmData enteringLevel;
 
@@ -49,17 +24,17 @@ public class Player : MonoBehaviour
 
     public void Save()
     {
-        string sheep = JsonUtility.ToJson(Sheep);
+        string sheep = JsonUtility.ToJson(SheepOnFarmList);
         System.IO.File.WriteAllText(sheepSave, sheep);
     }
 
     public void Load()
     {
-        if (System.IO.File.Exists(sheepSave)) Sheep = JsonUtility.FromJson<List<SheepData>>(System.IO.File.ReadAllText(sheepSave));
+        if (System.IO.File.Exists(sheepSave)) SheepOnFarmList = JsonUtility.FromJson<List<SheepData>>(System.IO.File.ReadAllText(sheepSave));
     }
 
     public void NewGame()
     {
-        Sheep = new List<SheepData>();
+        SheepOnFarmList = new List<SheepData>();
     }
 }

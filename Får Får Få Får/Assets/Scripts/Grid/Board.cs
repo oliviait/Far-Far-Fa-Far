@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Board : MonoBehaviour
 {
@@ -141,14 +142,15 @@ public class Board : MonoBehaviour
         counter = 0;
         foreach (Vector2Int pos in opponentFarmData.PlayerSpawnLocations)
         {
-            if (counter >= Player.Instance.InventorySheep.Count) return;  // If player doesn't have enough sheep in inv
+            // If player doesn't have enough sheep in inv
+            if (counter >= Player.Instance.InventorySheepList.Count(s => s != null)) return;  
 
             Piece piece = GameObject.Instantiate<Piece>(PiecePrefab);
             Tile tile = BoardTiles[pos.y, pos.x];
 
             tile.SetOccupant(piece);
             piece.transform.position = tile.transform.position;
-            piece.SetData(Player.Instance.InventorySheep[counter]);
+            piece.SetData(Player.Instance.InventorySheepList[counter]);
             Piece.NumberOfPlayerPieces++;
             piece.SetTilePlacedOn(tile);  // Link piece to tile it's placed on
             counter++;
