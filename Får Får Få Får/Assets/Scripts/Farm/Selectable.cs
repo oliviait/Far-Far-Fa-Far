@@ -14,7 +14,6 @@ public class Selectable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void OnMouseDown()
@@ -33,13 +32,19 @@ public class Selectable : MonoBehaviour
     {
         Breeding.Instance.Increase(gameObject);
         Selected = true;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0.8f, 0.8f, 1f);
+        foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.color = new Color(1f, 0.7f, 0.7f, 1f);
+        }
     }
 
     public void Deselect()
     {
         Breeding.Instance.Decrease(gameObject);
         Selected = false;
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.color = new Color(1f, 1f, 1f, 1f);
+        }    
     }
 }
