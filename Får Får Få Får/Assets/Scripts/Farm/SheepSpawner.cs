@@ -65,11 +65,8 @@ public class SheepSpawner : MonoBehaviour
 
         // Choose random spritegroup 
         SpriteSwapper swapper = sheepObj.GetComponent<SpriteSwapper>();
-        if (swapper.sheepSpriteGroup == null)
-        {
-            Debug.Log("Sprite Group Not Found");
+        if (swapper.sheepSpriteGroup == null) 
             swapper.sheepSpriteGroup = sheepSpriteGroups[Random.Range(0, sheepSpriteGroups.Count)]; 
-        }
         swapper.ChooseSprites();
         
         // Random position on farm

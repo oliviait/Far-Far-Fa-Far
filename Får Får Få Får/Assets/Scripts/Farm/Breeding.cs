@@ -62,6 +62,11 @@ public class Breeding : MonoBehaviour
             GameObject child = Instantiate(sheepPrefab);
             child.transform.position = SheepSpawner.Instance.GenerateRandomPointInFence();
             
+            SpriteSwapper swapper = child.GetComponent<SpriteSwapper>();
+            if (Random.value < 0.5f)
+                swapper.sheepSpriteGroup = firstParent.GetComponent<SpriteSwapper>().sheepSpriteGroup;
+            else swapper.sheepSpriteGroup = secondParent.GetComponent<SpriteSwapper>().sheepSpriteGroup;
+            
             Genetics firstParentGenes = firstParent.GetComponent<Genetics>();
             Genetics secondParentGenes = secondParent.GetComponent<Genetics>();
             Genetics childGenes = child.GetComponent<Genetics>();
@@ -82,11 +87,6 @@ public class Breeding : MonoBehaviour
             
             firstParent.GetComponent<Selectable>().Deselect();
             secondParent.GetComponent<Selectable>().Deselect();
-
-            SpriteSwapper swapper = child.GetComponent<SpriteSwapper>();
-            if (Random.value < 0.5f)
-                swapper.sheepSpriteGroup = firstParent.GetComponent<SpriteSwapper>().sheepSpriteGroup;
-            else swapper.sheepSpriteGroup = secondParentGenes.GetComponent<SpriteSwapper>().sheepSpriteGroup;
             
             SheepSpawner.Instance.SpawnSheep(child);
         }

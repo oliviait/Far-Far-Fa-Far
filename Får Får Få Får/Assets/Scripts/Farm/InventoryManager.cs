@@ -36,7 +36,6 @@ public class InventoryManager : MonoBehaviour
 
     public void ReturnSheepToFarm(GameObject sheepObj, InventorySlot slot)
     {
-        Debug.Log("ReturnSheepToFarm");
         slot.currentItem = null;    // Remove sheep from slot
         SheepData data = sheepObj.GetComponent<Stats>().Data;
         
@@ -46,7 +45,6 @@ public class InventoryManager : MonoBehaviour
 
     public void MoveSheepToInventory(GameObject sheepObj, InventorySlot slot)
     {
-        Debug.Log("MoveSheepToInventory");
         slot.currentItem = sheepObj;
         SheepData data = sheepObj.GetComponent<Stats>().Data;
         
