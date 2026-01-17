@@ -105,7 +105,7 @@ public class Board : MonoBehaviour
 
                 // Tile scale and coords
                 tile.transform.localScale = new Vector3(TileScaleX, TileScaleY, 1);
-                tile.GridPos = new Vector2Int(row, column);
+                tile.GridPos = new Vector2Int(column, row);
 
                 // Add tile to board
                 BoardTiles[row, column] = tile;
@@ -208,8 +208,8 @@ public class Board : MonoBehaviour
         if (tile == null) return null;
         var res = new List<Tile>();
 
-        int row = tile.GridPos.x; // Row
-        int col = tile.GridPos.y; // Column
+        int col = tile.GridPos.x; // Row
+        int row = tile.GridPos.y; // Column
 
         //  O X X     O X X
         //  X S X -->  X S X

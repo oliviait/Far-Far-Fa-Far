@@ -27,7 +27,7 @@ public class Piece : MonoBehaviour
     public AudioClipGroup DamageSound;
     public AudioClipGroup DieSound;
 
-    private Tile TilePlacedOn;   // Tile that the piece is placed on
+    public Tile TilePlacedOn;   // Tile that the piece is placed on
 
     private float NextMoveTime; // Used to determine, when is this piece's turn
 
