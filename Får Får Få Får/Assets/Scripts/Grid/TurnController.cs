@@ -56,6 +56,7 @@ public class TurnController : MonoBehaviour
         WinLoseText.text = "You Lost!";
         // Add restart level button later
         gameObject.SetActive(false);
+        Player.Instance.freshStart = false;
     }
 
     private void GameWon()
@@ -63,6 +64,7 @@ public class TurnController : MonoBehaviour
         WinLosePanel.gameObject.SetActive(true);
         WinLoseText.text = "You Won!";
         gameObject.SetActive(false);
+        Player.Instance.freshStart = false;
     }
 
     //-------------------------------------

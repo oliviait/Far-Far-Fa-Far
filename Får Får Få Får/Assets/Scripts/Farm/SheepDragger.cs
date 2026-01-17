@@ -4,8 +4,8 @@ public class SheepDragger : MonoBehaviour
 {
     public bool inSlot;
     public InventorySlot currentInventorySlot;
+    
     private bool isDraggingLocked;  // While dragging, is object's position locked
-
     private bool isDragging;    // Is this object currently being dragged
 
     private Camera mainCam;

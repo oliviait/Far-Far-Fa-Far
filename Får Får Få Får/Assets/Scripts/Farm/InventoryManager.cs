@@ -6,16 +6,13 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
     public List<InventorySlot> slots = new();
-    
+
 
     private void Awake()
     {
         if (Instance && Instance != this) Destroy(gameObject);
         else Instance = this;
-    }
-
-    private void Start()
-    {
+        
         // Clear slots jic
         int counter = 0;
         foreach (var slot in slots)
@@ -23,32 +20,48 @@ public class InventoryManager : MonoBehaviour
             slot.currentItem = null;
             slot.i = counter++;
         }
-
-        
-        // TODO Put sheep into slots
-        // Just putting sheep onto farm for now
-        Player.Instance.SheepOnFarmList.AddRange(Player.Instance.InventorySheepList);
-        for (int i = 0; i < Player.Instance.InventorySheepList.Count(); i++)
-        {
-            Player.Instance.InventorySheepList.RemoveAt(0);
-        }
     }
 
     public void ReturnSheepToFarm(GameObject sheepObj, InventorySlot slot)
     {
-        slot.currentItem = null;    // Remove sheep from slot
+        slot.currentItem = null; // Remove sheep from slot
         SheepData data = sheepObj.GetComponent<Stats>().Data;
-        
-        Player.Instance.SheepOnFarmList.Add(data);
-        Player.Instance.InventorySheepList.Remove(data);
+
+        Player.Instance.farmSheepList.Add(data);
+        Player.Instance.inventorySheepList.Remove(data);
     }
 
     public void MoveSheepToInventory(GameObject sheepObj, InventorySlot slot)
     {
         slot.currentItem = sheepObj;
         SheepData data = sheepObj.GetComponent<Stats>().Data;
-        
-        Player.Instance.InventorySheepList.Add(data);    // Set sheep as i-th in inventory
-        Player.Instance.SheepOnFarmList.Remove(data);
+
+        Player.Instance.inventorySheepList.Add(data);
+        if (Player.Instance.farmSheepList.Contains(data)) // If moved from farm 
+            Player.Instance.farmSheepList.Remove(data);
+    }
+
+    public void ReloadSheepFromSlotsToInventory()
+    {
+        // Load with fixed order
+        Player.Instance.inventorySheepList.Clear();
+        foreach (var slot in slots)
+        {
+            if (slot.currentItem != null) MoveSheepToInventory(slot.currentItem, slot);
+        }
+    }
+
+    public void PlaceSheepInSlot(GameObject sheep, int i)
+    {
+        sheep.transform.position = slots[i].transform.position;
+
+        slots[i].currentItem = sheep;
+
+        SheepDragger dragger = sheep.GetComponent<SheepDragger>();
+        dragger.currentInventorySlot = slots[i];
+        dragger.inSlot = true;
+
+        SheepData data = sheep.GetComponent<Stats>().Data;
+        Player.Instance.farmSheepList.Remove(data);
     }
 }
