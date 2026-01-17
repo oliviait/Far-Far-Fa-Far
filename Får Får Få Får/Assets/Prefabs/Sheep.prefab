@@ -339,6 +339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   Selected: 0
+  maxHoldTime: 0.5
+  maxMoveDistance: 0.7
 --- !u!114 &-526767284520237973
 MonoBehaviour:
   m_ObjectHideFlags: 0
