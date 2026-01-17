@@ -12,17 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf935421dbcebb84d87cb74f4b08e332, type: 3}
   m_Name: TutorialFarm
   m_EditorClassIdentifier: Assembly-CSharp::OpponentFarmData
+  FarmID: 0
   FarmerName: Peter
   Species: Sheep
   Location: {x: -0.12, y: 3.16, z: 0}
   Defeated: 0
   BoardSizeX: 5
-  BoardSizeY: 3
+  BoardSizeY: 1
   Animals:
-  - {fileID: 11400000, guid: 45bbf675e6760984d97d66647778121a, type: 2}
+  - {fileID: 11400000, guid: 8baff20abbda51744923c63c9fd2ab52, type: 2}
   EnemySpawnLocations:
-  - {x: 4, y: 1}
+  - {x: 4, y: 0}
   PlayerSpawnLocations:
-  - {x: 0, y: 1}
   - {x: 0, y: 0}
-  - {x: 0, y: 2}
