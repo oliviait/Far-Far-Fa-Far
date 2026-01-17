@@ -64,4 +64,6 @@ public class InventoryManager : MonoBehaviour
         SheepData data = sheep.GetComponent<Stats>().Data;
         Player.Instance.farmSheepList.Remove(data);
     }
+
+
 }

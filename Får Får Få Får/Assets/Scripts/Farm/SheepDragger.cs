@@ -43,7 +43,10 @@ public class SheepDragger : MonoBehaviour
 
         // If the sheep isn’t in an inventory slot and is outside the fence
         if (!inSlot && FarmBounds != null && !FarmBounds.OverlapPoint(transform.position))
-            transform.position = FarmBounds.ClosestPoint(transform.position); // Snap it back inside   
+        {
+            if (!DisposerBounds.OverlapPoint(transform.position))
+                transform.position = FarmBounds.ClosestPoint(transform.position); // Snap it back inside
+        }
 
         // If sheep is in slot, add it to inventory
         if (inSlot) InventoryManager.Instance.MoveSheepToInventory(gameObject, currentInventorySlot);
@@ -58,7 +61,6 @@ public class SheepDragger : MonoBehaviour
 
         // Is mouse over inv slot
         Collider2D[] hits = Physics2D.OverlapPointAll(mousePosition);
-
         bool hoveringSlot = false;
         foreach (Collider2D hit in hits)    // Go through everything the mouse is over
         {
@@ -91,11 +93,30 @@ public class SheepDragger : MonoBehaviour
                 }
             }
         }
+        
 
         if (!hoveringSlot)
         {
             isDraggingLocked = false;
             inSlot = false;
+            
+            if (DisposerBounds.OverlapPoint(mousePosition))   // If over disposer
+            {
+                isDraggingLocked = true;
+
+                GameObject sheepDisposer = GameObject.Find("SheepDisposer"); 
+                transform.position = sheepDisposer.transform.position;
+                sheepDisposer.GetComponent<SheepDisposer>().sheep = gameObject;
+                
+                gameObject.GetComponent<SheepPartsZIndexChooser>().PutInDisposer();
+                gameObject.transform.SetParent(DisposerBounds.gameObject.transform);
+            }
+            else
+            {
+                GameObject.Find("SheepDisposer").GetComponent<SheepDisposer>().sheep = null;
+                gameObject.GetComponent<SheepPartsZIndexChooser>().RemoveFromDisposer();
+                gameObject.transform.SetParent(null);
+            }
         }
         
         // Move sheep if not locked to inventory slot

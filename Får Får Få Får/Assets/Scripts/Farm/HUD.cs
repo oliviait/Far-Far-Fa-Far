@@ -39,4 +39,9 @@ public class HUD : MonoBehaviour
     {
         Breeding.Instance.Breed();
     }
+
+    public void OnRetireButtonClicked()
+    {
+        SheepDisposer.Instance.StartRetire();
+    }
 }
