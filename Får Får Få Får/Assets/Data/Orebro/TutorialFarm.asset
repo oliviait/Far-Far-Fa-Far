@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf935421dbcebb84d87cb74f4b08e332, type: 3}
   m_Name: TutorialFarm
   m_EditorClassIdentifier: Assembly-CSharp::OpponentFarmData
+  FarmID: 0
   FarmerName: Peter
   Species: Sheep
   Location: {x: -0.12, y: 3.16, z: 0}
