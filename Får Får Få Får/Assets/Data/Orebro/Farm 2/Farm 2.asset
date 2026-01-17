@@ -20,17 +20,17 @@ MonoBehaviour:
   BoardSizeX: 5
   BoardSizeY: 5
   Animals:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0a11f9d5e5499204e809eb9fbf24f4f0, type: 2}
+  - {fileID: 11400000, guid: 121c0142dbaf50041963d43801ccab88, type: 2}
+  - {fileID: 11400000, guid: 29d1730f4981516499f53446d58a4cae, type: 2}
+  - {fileID: 11400000, guid: 121c0142dbaf50041963d43801ccab88, type: 2}
+  - {fileID: 11400000, guid: 0a11f9d5e5499204e809eb9fbf24f4f0, type: 2}
   EnemySpawnLocations:
+  - {x: 4, y: 0}
   - {x: 4, y: 1}
   - {x: 4, y: 2}
   - {x: 4, y: 3}
   - {x: 4, y: 4}
-  - {x: 4, y: 5}
   PlayerSpawnLocations:
   - {x: 0, y: 2}
   - {x: 0, y: 1}

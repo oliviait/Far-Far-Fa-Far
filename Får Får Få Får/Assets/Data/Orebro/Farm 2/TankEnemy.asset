@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHP: 20
   DEF: 10
-  STR: 15
+  STR: 30
   SPD: 2
-  HeadSprite: {fileID: 2228145829748035742, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  HeadSprite: {fileID: -4687865368156648153, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   BodySprite: {fileID: 1502109059041779509, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   LegsSprite: {fileID: 5207399616574175175, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   Name: Tank
