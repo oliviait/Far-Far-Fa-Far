@@ -111,6 +111,6 @@ public class SheepSpawner : MonoBehaviour
     public Vector3 GenerateRandomPointInFence()
     {
         Vector3 p = new Vector3(Random.Range(-8f, 8f), Random.Range(-2f, 4f), 0f);
-        return boundsCollider.OverlapPoint(p) ? p : boundsCollider.ClosestPoint(p);
+        return boundsCollider.OverlapPoint(p) ? p : GenerateRandomPointInFence();
     }
 }

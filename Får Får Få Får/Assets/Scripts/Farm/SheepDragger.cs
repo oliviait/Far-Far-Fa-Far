@@ -9,7 +9,8 @@ public class SheepDragger : MonoBehaviour
     private bool isDragging;    // Is this object currently being dragged
 
     private Camera mainCam;
-    private PolygonCollider2D boundsCollider;
+    private PolygonCollider2D FarmBounds;
+    private PolygonCollider2D DisposerBounds;
 
 
     private void Awake()
@@ -18,7 +19,10 @@ public class SheepDragger : MonoBehaviour
         // Get bounds to snap sheep back to
         var fence = GameObject.Find("FarmFence");
         if (fence != null)
-            boundsCollider = fence.GetComponentInChildren<PolygonCollider2D>();
+            FarmBounds = fence.GetComponentInChildren<PolygonCollider2D>();
+        var disposer = GameObject.Find("SheepDisposer");
+        if (disposer != null) 
+            DisposerBounds = disposer.GetComponentInChildren<PolygonCollider2D>();
     }
 
     public void OnMouseDown()
@@ -38,8 +42,8 @@ public class SheepDragger : MonoBehaviour
         isDragging = false;
 
         // If the sheep isn’t in an inventory slot and is outside the fence
-        if (!inSlot && boundsCollider != null && !boundsCollider.OverlapPoint(transform.position))
-            transform.position = boundsCollider.ClosestPoint(transform.position); // Snap it back inside   
+        if (!inSlot && FarmBounds != null && !FarmBounds.OverlapPoint(transform.position))
+            transform.position = FarmBounds.ClosestPoint(transform.position); // Snap it back inside   
 
         // If sheep is in slot, add it to inventory
         if (inSlot) InventoryManager.Instance.MoveSheepToInventory(gameObject, currentInventorySlot);
