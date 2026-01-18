@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11901531246f0343999abf2245b4342, type: 3}
   m_Name: TankEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHP: 20
+  maxHP: 30
   DEF: 10
   STR: 30
   SPD: 2
-  HeadSprite: {fileID: -4687865368156648153, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
-  BodySprite: {fileID: 1502109059041779509, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
-  LegsSprite: {fileID: 5207399616574175175, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  HeadSprite: {fileID: 5554947745950462868, guid: ad266cebcc36ca3439b96d13b0fe1dec, type: 3}
+  BodySprite: {fileID: -1732398577104058132, guid: ad266cebcc36ca3439b96d13b0fe1dec, type: 3}
+  LegsSprite: {fileID: 5465309210468140610, guid: ad266cebcc36ca3439b96d13b0fe1dec, type: 3}
   Name: Tank

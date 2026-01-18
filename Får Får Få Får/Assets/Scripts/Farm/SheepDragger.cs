@@ -4,9 +4,9 @@ public class SheepDragger : MonoBehaviour
 {
     public bool inSlot;
     public InventorySlot currentInventorySlot;
-    
-    private bool isDraggingLocked;  // While dragging, is object's position locked
-    private bool isDragging;    // Is this object currently being dragged
+
+    private bool isDraggingLocked; // While dragging, is object's position locked
+    private bool isDragging; // Is this object currently being dragged
 
     private Camera mainCam;
     private PolygonCollider2D FarmBounds;
@@ -21,7 +21,7 @@ public class SheepDragger : MonoBehaviour
         if (fence != null)
             FarmBounds = fence.GetComponentInChildren<PolygonCollider2D>();
         var disposer = GameObject.Find("SheepDisposer");
-        if (disposer != null) 
+        if (disposer != null)
             DisposerBounds = disposer.GetComponentInChildren<PolygonCollider2D>();
     }
 
@@ -62,7 +62,7 @@ public class SheepDragger : MonoBehaviour
         // Is mouse over inv slot
         Collider2D[] hits = Physics2D.OverlapPointAll(mousePosition);
         bool hoveringSlot = false;
-        foreach (Collider2D hit in hits)    // Go through everything the mouse is over
+        foreach (Collider2D hit in hits) // Go through everything the mouse is over
         {
             if (hit.gameObject == gameObject) continue; // skip self
             InventorySlot slot = hit.GetComponent<InventorySlot>();
@@ -93,32 +93,40 @@ public class SheepDragger : MonoBehaviour
                 }
             }
         }
-        
+
 
         if (!hoveringSlot)
         {
             isDraggingLocked = false;
             inSlot = false;
-            
-            if (DisposerBounds.OverlapPoint(mousePosition))   // If over disposer
-            {
-                isDraggingLocked = true;
 
-                GameObject sheepDisposer = GameObject.Find("SheepDisposer"); 
-                transform.position = sheepDisposer.transform.position;
-                sheepDisposer.GetComponent<SheepDisposer>().sheep = gameObject;
-                
-                gameObject.GetComponent<SheepPartsZIndexChooser>().PutInDisposer();
-                gameObject.transform.SetParent(DisposerBounds.gameObject.transform.parent);
-            }
-            else
+            SheepDisposer disposer = GameObject.Find("SheepDisposer").GetComponent<SheepDisposer>();
+            if (DisposerBounds.isActiveAndEnabled)
             {
-                GameObject.Find("SheepDisposer").GetComponent<SheepDisposer>().sheep = null;
-                gameObject.GetComponent<SheepPartsZIndexChooser>().RemoveFromDisposer();
-                gameObject.transform.SetParent(null);
+                if (DisposerBounds.OverlapPoint(mousePosition))
+                {
+                    if (disposer.sheep == null)
+                    {
+                        isDraggingLocked = true;
+
+                        GameObject sheepDisposer = GameObject.Find("SheepDisposer");
+                        transform.position = sheepDisposer.transform.position;
+                        sheepDisposer.GetComponent<SheepDisposer>().sheep = gameObject;
+
+                        gameObject.GetComponent<SheepPartsZIndexChooser>().PutInDisposer();
+                        gameObject.transform.SetParent(DisposerBounds.gameObject.transform.parent);
+                    }
+                    else if (disposer.sheep == gameObject) isDraggingLocked = true;
+                }
+                else
+                {
+                    if (disposer.sheep == gameObject) disposer.sheep = null;
+                    gameObject.GetComponent<SheepPartsZIndexChooser>().RemoveFromDisposer();
+                    gameObject.transform.SetParent(null);
+                }
             }
         }
-        
+
         // Move sheep if not locked to inventory slot
         if (!isDraggingLocked) transform.position = mousePosition;
     }

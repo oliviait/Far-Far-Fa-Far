@@ -35,6 +35,7 @@ public class SheepDisposer : MonoBehaviour
 
     public void RetireSheep()
     {
+        if (sheep == null) return;
         SheepData data = sheep.GetComponent<Stats>().Data;
         if (Player.Instance.farmSheepList.Contains(data))
             Player.Instance.farmSheepList.Remove(data);
