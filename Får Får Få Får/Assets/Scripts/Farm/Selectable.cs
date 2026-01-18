@@ -8,6 +8,8 @@ public class Selectable : MonoBehaviour
     public float maxHoldTime = 1f;
     public float maxMoveDistance = 0.2f;
 
+    public bool isSelectable;
+
     private float mouseDownTime;
     private bool isHolding;
     private Vector3 mouseDownPosition;
@@ -15,10 +17,12 @@ public class Selectable : MonoBehaviour
     void Start()
     {
         Selected = false;
+        isSelectable = true;
     }
 
     void OnMouseDown()
     {
+        if (!isSelectable) return;
         mouseDownTime = Time.time;
         mouseDownPosition = transform.position;
         isHolding = true;
@@ -48,6 +52,7 @@ public class Selectable : MonoBehaviour
 
     public void Select()
     {
+        if (!isSelectable) return;
         Breeding.Instance.Increase(gameObject);
         Selected = true;
         SetColor(new Color(1f, 0.7f, 0.7f, 1f));

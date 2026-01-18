@@ -85,8 +85,13 @@ public class Breeding : MonoBehaviour
 
             Player.Instance.farmSheepList.Add(child.GetComponent<Stats>().Data);
             
-            firstParent.GetComponent<Selectable>().Deselect();
-            secondParent.GetComponent<Selectable>().Deselect();
+            Selectable firstParentSelectable = firstParent.GetComponent<Selectable>();
+            firstParentSelectable.Deselect();
+            firstParentSelectable.isSelectable = false;
+            
+            Selectable secondParentSelectable = secondParent.GetComponent<Selectable>();
+            secondParentSelectable.Deselect();
+            secondParentSelectable.isSelectable = false;
             
             SheepSpawner.Instance.SpawnSheep(child);
         }

@@ -19,10 +19,13 @@ public class SheepDisposer : MonoBehaviour
 
     public void StartRetire()
     {
-        bounds.gameObject.SetActive(false);
         Animator animator = Instance.GetComponent<Animator>();
-        if (sheep == null) animator.SetTrigger("Warning"); 
-        else animator.SetTrigger("Retire");
+        if (sheep == null) animator.SetTrigger("Warning");
+        else
+        {
+            bounds.gameObject.SetActive(false);
+            animator.SetTrigger("Retire");
+        }
     }
 
     public void FinishRetire()
