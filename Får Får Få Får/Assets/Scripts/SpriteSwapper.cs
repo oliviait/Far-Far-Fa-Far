@@ -59,8 +59,8 @@ public class SpriteSwapper : MonoBehaviour
         if (DEFLevel < totalDEFLevels) headRenderer.sprite = headParts[DEFLevel];
 
         // Set data so piece can use it in battle
-        data.HeadSprite = headRenderer.sprite;
-        data.BodySprite = bodyRenderer.sprite;
-        data.LegsSprite = legsRenderer.sprite;
+        data.headSprite = headRenderer.sprite;
+        data.bodySprite = bodyRenderer.sprite;
+        data.legsSprite = legsRenderer.sprite;
     }
 }

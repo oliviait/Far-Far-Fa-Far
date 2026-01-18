@@ -34,7 +34,7 @@ public class Board : MonoBehaviour
     {
         Instance = this;
 
-        TileWidth = TilePrefab.GetComponent<Renderer>().bounds.size.x;
+        TileWidth = TilePrefab.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x;
         ySpacing = Mathf.Sqrt(3f) * TileWidth / 2;
 
         TileWidth *= TileScaleX;
@@ -143,14 +143,14 @@ public class Board : MonoBehaviour
         foreach (Vector2Int pos in opponentFarmData.PlayerSpawnLocations)
         {
             // If player doesn't have enough sheep in inv
-            if (counter >= Player.Instance.InventorySheepList.Count(s => s != null)) return;  
+            if (counter >= Player.Instance.inventorySheepList.Count(s => s != null)) return;  
 
             Piece piece = GameObject.Instantiate<Piece>(PiecePrefab);
             Tile tile = BoardTiles[pos.y, pos.x];
 
             tile.SetOccupant(piece);
             piece.transform.position = tile.transform.position;
-            piece.SetData(Player.Instance.InventorySheepList[counter]);
+            piece.SetData(Player.Instance.inventorySheepList[counter]);
             Piece.NumberOfPlayerPieces++;
             piece.SetTilePlacedOn(tile);  // Link piece to tile it's placed on
             counter++;

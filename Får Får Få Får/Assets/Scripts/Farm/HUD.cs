@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour
 
     public void OnMapButtonClicked()
     {
-        if (Player.Instance.InventorySheepList.Count == 0)
+        if (Player.Instance.inventorySheepList.Count == 0)
         {
             Animator slotAnimator = inventorySlotsHolder.GetComponent<Animator>();
             slotAnimator.SetTrigger("Wiggle");
@@ -30,6 +30,7 @@ public class HUD : MonoBehaviour
         else
         {
             mapCrunch.Play();
+            InventoryManager.Instance.ReloadSheepFromSlotsToInventory();
             SceneManager.LoadScene(2);
         }
     }
@@ -37,5 +38,10 @@ public class HUD : MonoBehaviour
     public void OnBreedButtonClicked()
     {
         Breeding.Instance.Breed();
+    }
+
+    public void OnRetireButtonClicked()
+    {
+        SheepDisposer.Instance.StartRetire();
     }
 }

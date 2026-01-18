@@ -1,34 +1,22 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public class CheckStats : MonoBehaviour
 {
-    public string StatsDisplay;
-    private TextMeshProUGUI displayStats;
-    public Vector3 Offset;
+    public Vector3 offset;
+    private Stats stats;
 
-    void Start()
+    void Awake()
     {
-        displayStats = GameObject.Find(StatsDisplay).GetComponent<TextMeshProUGUI>();
-        displayStats.enabled = false;
+        stats = GetComponent<Stats>();
     }
 
-    private void OnMouseOver()
+    void OnMouseOver()
     {
-        if (displayStats == null) return;
-        displayStats.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + Offset);
-        if (gameObject.transform.position.x > 5)
-        {
-            displayStats.transform.localPosition += new Vector3(-90, 0, 0);
-        }
-        Stats stats = gameObject.GetComponent<Stats>();
-        displayStats.text = stats.ToString();
-        displayStats.enabled = true;
+        StatsDisplay.Instance.Show(stats, transform.position + offset);
     }
 
-    private void OnMouseExit()
+    void OnMouseExit()
     {
-        displayStats.enabled = false;
+        StatsDisplay.Instance.Hide();
     }
 }

@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool freshStart = true;  // TODO change to false at the end of tutorial
+    
     public static Player Instance;
-    public SheepData SheepData;
     private string sheepSave;
 
-    // Player's sheep and corresponding methods
-    public List<SheepData> SheepOnFarmList = new();
-    public List<SheepData> InventorySheepList = new();
+    // Player's sheep lists
+    public List<SheepData> farmSheepList = new();
+    public List<SheepData> inventorySheepList = new();
+    
     // Game progress
     public OpponentFarmData enteringLevel;
 
@@ -18,23 +20,25 @@ public class Player : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         
+        
+        
         sheepSave = Application.persistentDataPath + "/Sheep.json";
         DontDestroyOnLoad(gameObject);
     }
 
     public void Save()
     {
-        string sheep = JsonUtility.ToJson(SheepOnFarmList);
+        string sheep = JsonUtility.ToJson(farmSheepList);
         System.IO.File.WriteAllText(sheepSave, sheep);
     }
 
     public void Load()
     {
-        if (System.IO.File.Exists(sheepSave)) SheepOnFarmList = JsonUtility.FromJson<List<SheepData>>(System.IO.File.ReadAllText(sheepSave));
+        if (System.IO.File.Exists(sheepSave)) farmSheepList = JsonUtility.FromJson<List<SheepData>>(System.IO.File.ReadAllText(sheepSave));
     }
 
     public void NewGame()
     {
-        SheepOnFarmList = new List<SheepData>();
+        farmSheepList = new List<SheepData>();
     }
 }

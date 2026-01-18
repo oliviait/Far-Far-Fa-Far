@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11901531246f0343999abf2245b4342, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHP: 0
-  DEF: 0
-  STR: 0
-  SPD: 0
-  HeadSprite: {fileID: 0}
-  BodySprite: {fileID: 0}
-  LegsSprite: {fileID: 0}
-  Name: 
+  maxHP: 8
+  DEF: 8
+  STR: 15
+  SPD: 5
+  HeadSprite: {fileID: 6471774181469947736, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  BodySprite: {fileID: -455801778685639691, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  LegsSprite: {fileID: 3359257117080636110, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  Name: Basic
