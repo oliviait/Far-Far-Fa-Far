@@ -63,9 +63,9 @@ public class Piece : MonoBehaviour
         maxHP = data.maxHP;
         defence = data.DEF;
 
-        Head.GetComponent<SpriteRenderer>().sprite = data.HeadSprite;
-        Body.GetComponent<SpriteRenderer>().sprite = data.BodySprite;
-        Legs.GetComponent<SpriteRenderer>().sprite = data.LegsSprite;
+        Head.GetComponent<SpriteRenderer>().sprite = data.headSprite;
+        Body.GetComponent<SpriteRenderer>().sprite = data.bodySprite;
+        Legs.GetComponent<SpriteRenderer>().sprite = data.legsSprite;
         Owner = Team.Player;
     }
 

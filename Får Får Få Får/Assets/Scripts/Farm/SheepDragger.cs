@@ -4,12 +4,13 @@ public class SheepDragger : MonoBehaviour
 {
     public bool inSlot;
     public InventorySlot currentInventorySlot;
+    
     private bool isDraggingLocked;  // While dragging, is object's position locked
-
     private bool isDragging;    // Is this object currently being dragged
 
     private Camera mainCam;
-    private PolygonCollider2D boundsCollider;
+    private PolygonCollider2D FarmBounds;
+    private PolygonCollider2D DisposerBounds;
 
 
     private void Awake()
@@ -18,7 +19,10 @@ public class SheepDragger : MonoBehaviour
         // Get bounds to snap sheep back to
         var fence = GameObject.Find("FarmFence");
         if (fence != null)
-            boundsCollider = fence.GetComponentInChildren<PolygonCollider2D>();
+            FarmBounds = fence.GetComponentInChildren<PolygonCollider2D>();
+        var disposer = GameObject.Find("SheepDisposer");
+        if (disposer != null) 
+            DisposerBounds = disposer.GetComponentInChildren<PolygonCollider2D>();
     }
 
     public void OnMouseDown()
@@ -38,8 +42,11 @@ public class SheepDragger : MonoBehaviour
         isDragging = false;
 
         // If the sheep isn’t in an inventory slot and is outside the fence
-        if (!inSlot && boundsCollider != null && !boundsCollider.OverlapPoint(transform.position))
-            transform.position = boundsCollider.ClosestPoint(transform.position); // Snap it back inside   
+        if (!inSlot && FarmBounds != null && !FarmBounds.OverlapPoint(transform.position))
+        {
+            if (!DisposerBounds.OverlapPoint(transform.position))
+                transform.position = FarmBounds.ClosestPoint(transform.position); // Snap it back inside
+        }
 
         // If sheep is in slot, add it to inventory
         if (inSlot) InventoryManager.Instance.MoveSheepToInventory(gameObject, currentInventorySlot);
@@ -54,7 +61,6 @@ public class SheepDragger : MonoBehaviour
 
         // Is mouse over inv slot
         Collider2D[] hits = Physics2D.OverlapPointAll(mousePosition);
-
         bool hoveringSlot = false;
         foreach (Collider2D hit in hits)    // Go through everything the mouse is over
         {
@@ -87,11 +93,30 @@ public class SheepDragger : MonoBehaviour
                 }
             }
         }
+        
 
         if (!hoveringSlot)
         {
             isDraggingLocked = false;
             inSlot = false;
+            
+            if (DisposerBounds.OverlapPoint(mousePosition))   // If over disposer
+            {
+                isDraggingLocked = true;
+
+                GameObject sheepDisposer = GameObject.Find("SheepDisposer"); 
+                transform.position = sheepDisposer.transform.position;
+                sheepDisposer.GetComponent<SheepDisposer>().sheep = gameObject;
+                
+                gameObject.GetComponent<SheepPartsZIndexChooser>().PutInDisposer();
+                gameObject.transform.SetParent(DisposerBounds.gameObject.transform.parent);
+            }
+            else
+            {
+                GameObject.Find("SheepDisposer").GetComponent<SheepDisposer>().sheep = null;
+                gameObject.GetComponent<SheepPartsZIndexChooser>().RemoveFromDisposer();
+                gameObject.transform.SetParent(null);
+            }
         }
         
         // Move sheep if not locked to inventory slot

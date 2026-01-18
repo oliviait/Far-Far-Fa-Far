@@ -1,23 +1,45 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
     public bool Selected;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Selection Settings")]
+    public float maxHoldTime = 1f;
+    public float maxMoveDistance = 0.2f;
+
+    public bool isSelectable;
+
+    private float mouseDownTime;
+    private bool isHolding;
+    private Vector3 mouseDownPosition;
+
     void Start()
     {
         Selected = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        isSelectable = true;
     }
 
     void OnMouseDown()
     {
+        if (!isSelectable) return;
+        mouseDownTime = Time.time;
+        mouseDownPosition = transform.position;
+        isHolding = true;
+    }
+
+    void OnMouseUp()
+    {
+        if (!isHolding) return;
+
+        isHolding = false;
+
+        float heldTime = Time.time - mouseDownTime;
+        float movedDistance = Vector3.Distance(transform.position, mouseDownPosition);
+
+        if (heldTime > maxHoldTime) return;
+        if (movedDistance > maxMoveDistance) return;
+
         if (Selected)
         {
             Deselect();
@@ -30,21 +52,24 @@ public class Selectable : MonoBehaviour
 
     public void Select()
     {
+        if (!isSelectable) return;
         Breeding.Instance.Increase(gameObject);
         Selected = true;
-        foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
-        {
-            sr.color = new Color(1f, 0.7f, 0.7f, 1f);
-        }
+        SetColor(new Color(1f, 0.7f, 0.7f, 1f));
     }
 
     public void Deselect()
     {
         Breeding.Instance.Decrease(gameObject);
         Selected = false;
-        foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        SetColor(Color.white);
+    }
+
+    private void SetColor(Color color)
+    {
+        foreach (var sr in GetComponentsInChildren<SpriteRenderer>())
         {
-            sr.color = new Color(1f, 1f, 1f, 1f);
-        }    
+            sr.color = color;
+        }
     }
 }
