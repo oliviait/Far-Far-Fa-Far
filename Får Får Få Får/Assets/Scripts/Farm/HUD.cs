@@ -31,6 +31,9 @@ public class HUD : MonoBehaviour
         {
             mapCrunch.Play();
             InventoryManager.Instance.ReloadSheepFromSlotsToInventory();
+            if (Player.Instance.freshStart) SettingsManager.Instance.SetTutorialText(
+                "Choose your opponent and go battle!"
+            );
             SceneManager.LoadScene(2);
         }
     }
@@ -38,6 +41,9 @@ public class HUD : MonoBehaviour
     public void OnBreedButtonClicked()
     {
         Breeding.Instance.Breed();
+        if (Player.Instance.freshStart) SettingsManager.Instance.SetTutorialText(
+            "Great! Now take your sheep and go battle! For this you have a map!"
+            );
     }
 
     public void OnRetireButtonClicked()

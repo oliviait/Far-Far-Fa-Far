@@ -1,11 +1,17 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager Instance { get; private set; }
     public GameObject settingsPanel;
     public GameObject settingsButton;
+
+    public GameObject tutorialPanel;
+    public TextMeshProUGUI tutorialText;
 
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float gameSoundsVolume = 1f;
@@ -22,14 +28,17 @@ public class SettingsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         SceneManager.sceneLoaded += OnSceneLoaded;
-
+        
         LoadSettings();
         ApplyVolumes();
+        
+        tutorialPanel.SetActive(false);
     }
-    
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         settingsButton.SetActive(scene.buildIndex != 0);
+        tutorialPanel.SetActive(scene.buildIndex != 0 && Player.Instance.freshStart);
     }
 
     public void Open()
@@ -102,5 +111,10 @@ public class SettingsManager : MonoBehaviour
         
         // TODO save game state
         SceneManager.LoadScene(0);
+    }
+
+    public void SetTutorialText(string text)
+    {
+        tutorialText.text = text;
     }
 }

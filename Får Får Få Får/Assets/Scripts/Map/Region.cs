@@ -103,6 +103,9 @@ public class Region : MonoBehaviour
     public void onBattleButtonClicked()
     {
         if (SwordClash != null) SwordClash.Play();
+        if (Player.Instance.freshStart) SettingsManager.Instance.SetTutorialText(
+            "In battle your sheep's stats matter. Whoever defeats opponents animals first wins! Good luck!"
+            );
         SceneManager.LoadScene(3);
     }
 

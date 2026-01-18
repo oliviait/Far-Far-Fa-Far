@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHP: 30
   DEF: 10
-  STR: 30
+  STR: 100
   SPD: 2
   HeadSprite: {fileID: 3269474685331569218, guid: 163f31ec17cb47241900b9a4f45f0732, type: 3}
   BodySprite: {fileID: -3952457797538486127, guid: 163f31ec17cb47241900b9a4f45f0732, type: 3}
