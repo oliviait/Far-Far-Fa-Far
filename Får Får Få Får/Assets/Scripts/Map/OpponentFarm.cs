@@ -7,9 +7,10 @@ public class OpponentFarm : MonoBehaviour
     public Canvas FarmInfoCanvas;
     public TextMeshProUGUI InfoText;
 
+    private GameObject FarmInfoPanel;
     private Collider2D col;
     private SpriteRenderer sr;
-
+    
     private void Awake()
     {
         col = GetComponent<Collider2D>();
@@ -18,6 +19,7 @@ public class OpponentFarm : MonoBehaviour
 
     private void Start()
     {
+        FarmInfoPanel = FarmInfoCanvas.transform.GetChild(0).gameObject;
         transform.position = data.Location;
         ApplyDefeatedState();
     }
@@ -37,6 +39,18 @@ public class OpponentFarm : MonoBehaviour
 
     void Update()
     {
+        // if click off panel
+        if (Input.GetMouseButtonDown(0) && FarmInfoCanvas.isActiveAndEnabled)
+        {
+            if (!RectTransformUtility.RectangleContainsScreenPoint(
+                    FarmInfoPanel.GetComponent<RectTransform>(),
+                    Input.mousePosition,
+                    null))
+            {
+                FarmInfoCanvas.gameObject.SetActive(false);
+            }
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape))
             FarmInfoCanvas.gameObject.SetActive(false);
     }
@@ -45,6 +59,14 @@ public class OpponentFarm : MonoBehaviour
     {
         if (data == null) return;
 
+        StartCoroutine(OpenPanelNextFrame());
+    }
+
+    // DON'T TOUCH THIS
+    // SCARY I KNOW BUT IT WORKS
+    private System.Collections.IEnumerator OpenPanelNextFrame()
+    {
+        yield return null; // wait one frame, necessary for clicking off to close panel
         FarmInfoCanvas.gameObject.SetActive(true);
         InfoText.text = ToString();
         Player.Instance.enteringLevel = data;
