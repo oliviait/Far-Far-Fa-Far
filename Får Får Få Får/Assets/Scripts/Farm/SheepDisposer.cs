@@ -7,6 +7,7 @@ public class SheepDisposer : MonoBehaviour
     public GameObject sheep;
     public AudioClipGroup warningSound;
     public AudioClipGroup cartWroom;
+    public PolygonCollider2D bounds;
     
     
 
@@ -18,9 +19,15 @@ public class SheepDisposer : MonoBehaviour
 
     public void StartRetire()
     {
+        bounds.gameObject.SetActive(false);
         Animator animator = Instance.GetComponent<Animator>();
         if (sheep == null) animator.SetTrigger("Warning"); 
         else animator.SetTrigger("Retire");
+    }
+
+    public void FinishRetire()
+    {
+        bounds.gameObject.SetActive(true);
     }
 
     public void RetireSheep()

@@ -34,7 +34,7 @@ public class Board : MonoBehaviour
     {
         Instance = this;
 
-        TileWidth = TilePrefab.GetComponent<Renderer>().bounds.size.x;
+        TileWidth = TilePrefab.transform.GetChild(0).GetComponent<Renderer>().bounds.size.x;
         ySpacing = Mathf.Sqrt(3f) * TileWidth / 2;
 
         TileWidth *= TileScaleX;

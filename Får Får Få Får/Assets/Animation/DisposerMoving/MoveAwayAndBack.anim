@@ -719,14 +719,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2
+    functionName: PlayCartWroomSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.0166667
     functionName: RetireSheep
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2
-    functionName: PlayCartWroomSound
+  - time: 4
+    functionName: FinishRetire
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

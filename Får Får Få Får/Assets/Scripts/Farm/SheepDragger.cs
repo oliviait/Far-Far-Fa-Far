@@ -109,7 +109,7 @@ public class SheepDragger : MonoBehaviour
                 sheepDisposer.GetComponent<SheepDisposer>().sheep = gameObject;
                 
                 gameObject.GetComponent<SheepPartsZIndexChooser>().PutInDisposer();
-                gameObject.transform.SetParent(DisposerBounds.gameObject.transform);
+                gameObject.transform.SetParent(DisposerBounds.gameObject.transform.parent);
             }
             else
             {

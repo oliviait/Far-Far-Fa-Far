@@ -191,6 +191,7 @@ MonoBehaviour:
   sheep: {fileID: 0}
   warningSound: {fileID: 11400000, guid: 010ff1c9aa89fb744a8afeaa625b2c9d, type: 2}
   cartWroom: {fileID: 11400000, guid: e335e2cfc67ca0249a4e24678d0af7da, type: 2}
+  bounds: {fileID: 1984500393}
 --- !u!1001 &157507953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1527,9 +1528,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0, y: 0.7}
       - {x: -5.8510566, y: 0.709017}
-      - {x: -7.995678, y: -2.4691896}
-      - {x: -0.6877852, y: -2.509017}
-      - {x: 7.1877856, y: -2.409017}
+      - {x: -7.865678, y: -2.1691897}
+      - {x: -0.5877852, y: -2.1890168}
+      - {x: 7.0777855, y: -2.169017}
       - {x: 4.8510566, y: 0.70901716}
   m_UseDelaunayMesh: 0
 --- !u!1001 &757809958
