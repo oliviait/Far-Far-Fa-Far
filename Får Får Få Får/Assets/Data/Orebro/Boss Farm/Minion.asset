@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11901531246f0343999abf2245b4342, type: 3}
   m_Name: Minion
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  maxHP: 10
-  DEF: 10
-  STR: 10
-  SPD: 10
+  maxHP: 8
+  DEF: 8
+  STR: 12
+  SPD: 15
   HeadSprite: {fileID: 2713087617109129063, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   BodySprite: {fileID: 6471774181469947736, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   LegsSprite: {fileID: 3359257117080636110, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}

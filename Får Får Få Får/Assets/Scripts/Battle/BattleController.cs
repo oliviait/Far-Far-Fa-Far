@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class BattleController : MonoBehaviour
 {
-    
     public bool playerWon = false;
 
     public void onBackToFarmButtonClicked()

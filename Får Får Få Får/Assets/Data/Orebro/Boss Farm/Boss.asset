@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHP: 100
-  DEF: 20
-  STR: 20
+  DEF: 4
+  STR: 100
   SPD: 5
   HeadSprite: {fileID: 2228145829748035742, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
   BodySprite: {fileID: -914775693401210853, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
