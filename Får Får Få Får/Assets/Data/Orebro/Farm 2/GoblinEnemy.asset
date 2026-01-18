@@ -16,7 +16,7 @@ MonoBehaviour:
   DEF: 2
   STR: 5
   SPD: 10
-  HeadSprite: {fileID: -7377808030705860117, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
-  BodySprite: {fileID: -3392848610080769739, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
-  LegsSprite: {fileID: 5907031375347763918, guid: 68b2cc3c0604c4d41a9e8ff450f1e857, type: 3}
+  HeadSprite: {fileID: 2576367141215591596, guid: 163f31ec17cb47241900b9a4f45f0732, type: 3}
+  BodySprite: {fileID: 2898921696261231736, guid: 163f31ec17cb47241900b9a4f45f0732, type: 3}
+  LegsSprite: {fileID: -1162695687586822846, guid: 163f31ec17cb47241900b9a4f45f0732, type: 3}
   Name: Goblin

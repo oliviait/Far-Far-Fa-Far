@@ -111,7 +111,7 @@ public class Piece : MonoBehaviour
 
     public void Attack(Piece target)
     {
-        int damage = (int) (powerConstant * (float) strength / (float) target.defence);
+        int damage = (int) (powerConstant * strength / target.defence * 0.5);
         target.TakeDamage(Mathf.Max(damage, 1));
     }
 }
