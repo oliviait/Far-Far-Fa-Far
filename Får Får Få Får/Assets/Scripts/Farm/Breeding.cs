@@ -102,7 +102,7 @@ public class Breeding : MonoBehaviour
         int childGene = 0;
         for (int i = 1; i <= 1<<15; i *= 2)
         {
-            int r = Random.Range(-15, 16);
+            int r = Random.Range(-3, 4);
             if (r < 0)
             {
                 childGene += i & GeneA;

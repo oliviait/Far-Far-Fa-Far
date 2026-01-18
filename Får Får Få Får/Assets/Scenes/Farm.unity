@@ -2918,7 +2918,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01439c71219f6114b8abe5c193664af8, type: 2}
   - {fileID: 11400000, guid: c3b0ba0377b338f44bf1dceb06ed7ebe, type: 2}
   - {fileID: 11400000, guid: ec6c0731442e10843819dd99c21e3bb0, type: 2}
-  startingSheep: 5
+  startingSheep: 4
 --- !u!4 &2103379654
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class SheepSpawner : MonoBehaviour
         {
             Debug.Log("FRESH START");
             for (int i = 0; i < startingSheep; i++)
-                SpawnNewSheep();
+                SpawnNewSheep(i);
         }
         else
         {
@@ -99,6 +99,27 @@ public class SheepSpawner : MonoBehaviour
         stats.Name = Breeding.Instance.randomNames[Random.Range(0, Breeding.Instance.randomNames.Count)];
         stats.Data = CreateData(sheep);
 
+        SpawnSheep(sheep);
+        return sheep;
+    }
+    
+    public GameObject SpawnNewSheep(int i)
+    {
+        GameObject sheep = Instantiate(sheepPrefab);
+        sheep.transform.position = GenerateRandomPointInFence(); // Place it randomly into fence
+
+        Genetics genes = sheep.GetComponent<Genetics>();
+        genes.GenesA = Breeding.Instance.RandomGenes();
+        genes.GenesB = Breeding.Instance.RandomGenes();
+
+        Stats stats = sheep.GetComponent<Stats>();
+        stats.SetStats(genes);
+        stats.Name = Breeding.Instance.randomNames[Random.Range(0, Breeding.Instance.randomNames.Count)];
+        stats.Data = CreateData(sheep);
+
+        SpriteSwapper swapper = sheep.GetComponent<SpriteSwapper>();
+        swapper.sheepSpriteGroup = sheepSpriteGroups[i];
+        
         SpawnSheep(sheep);
         return sheep;
     }
