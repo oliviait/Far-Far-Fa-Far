@@ -16,7 +16,7 @@ MonoBehaviour:
   FarmerName: Harry
   Species: Pig
   Location: {x: 0.82, y: 1.35, z: 0}
-  Defeated: 1
+  Defeated: 0
   BoardSizeX: 5
   BoardSizeY: 5
   Animals:
