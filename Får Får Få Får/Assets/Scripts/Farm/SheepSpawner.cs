@@ -119,6 +119,7 @@ public class SheepSpawner : MonoBehaviour
 
         SpriteSwapper swapper = sheep.GetComponent<SpriteSwapper>();
         swapper.sheepSpriteGroup = sheepSpriteGroups[i];
+        stats.Data.spriteGroup = swapper.sheepSpriteGroup;
         
         SpawnSheep(sheep);
         return sheep;

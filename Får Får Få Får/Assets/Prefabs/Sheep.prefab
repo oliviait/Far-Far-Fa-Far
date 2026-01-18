@@ -447,10 +447,10 @@ MonoBehaviour:
   Body: {fileID: 860029852805234727}
   Head: {fileID: 6626594657996982989}
   Legs: {fileID: 2527398486169063311}
-  DEFChangeStep: 10
-  STRChangeStep: 10
-  HPChangeStep: 10
-  SPDChangeStep: 10
+  DEFChangeStep: 7
+  STRChangeStep: 7
+  HPChangeStep: 6
+  SPDChangeStep: 5
   sheepSpriteGroup: {fileID: 0}
 --- !u!114 &8039412561487501399
 MonoBehaviour:
