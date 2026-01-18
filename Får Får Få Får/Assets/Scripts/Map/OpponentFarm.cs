@@ -26,9 +26,6 @@ public class OpponentFarm : MonoBehaviour
     {
         if (data == null) return;
 
-        // Disable clicks
-        if (col != null) col.enabled = !data.Defeated;
-
         // Optional: dim (remove if you already have a better defeated look)
         if (sr != null)
         {
@@ -47,9 +44,6 @@ public class OpponentFarm : MonoBehaviour
     void OnMouseDown()
     {
         if (data == null) return;
-
-        // If defeated, do nothing (collider should already block this)
-        if (data.Defeated) return;
 
         FarmInfoCanvas.gameObject.SetActive(true);
         InfoText.text = ToString();
