@@ -16,7 +16,7 @@ MonoBehaviour:
   FarmerName: Annika
   Species: Cow
   Location: {x: -1.11, y: -0.14, z: 0}
-  Defeated: 0
+  Defeated: 1
   BoardSizeX: 5
   BoardSizeY: 3
   Animals:

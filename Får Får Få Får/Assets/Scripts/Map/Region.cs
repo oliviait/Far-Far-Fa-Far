@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class Region : MonoBehaviour
 {
     [Header("Stages (0..N-1)")]
-    public RegionData[] StageData;            // Orebro, Svealand, Sverige, Norra_Europa (in this order)
-    public Sprite[] StageSprites;             // matching order
-    public SpriteRenderer MapSpriteRenderer;  // drag the Map object's SpriteRenderer here
+    public RegionData[] StageData;            
+    public Sprite[] StageSprites;             
+    public SpriteRenderer MapSpriteRenderer;  
 
     [Header("Spawning")]
     public GameObject OpponentFarmPrefab;
@@ -16,7 +16,8 @@ public class Region : MonoBehaviour
     public TextMeshProUGUI InfoText;
 
     [Header("UI")]
-    public GameObject NextStageButton;
+    public GameObject NextStageButton; // "More opponents"
+    public GameObject PrevStageButton; // "Back"
 
     [Header("Audio")]
     public AudioClipGroup SwordClash;
@@ -24,10 +25,9 @@ public class Region : MonoBehaviour
     void Start()
     {
         if (FarmInfoCanvas != null) FarmInfoCanvas.gameObject.SetActive(false);
-        if (NextStageButton != null) NextStageButton.SetActive(false);
 
         LoadCurrentStage();
-        CheckAllDefeatedForCurrentStage();
+        UpdateStageButtons();
     }
 
     private int GetStageIndex()
@@ -43,11 +43,9 @@ public class Region : MonoBehaviour
     {
         int stage = GetStageIndex();
 
-        // Swap map sprite
         if (MapSpriteRenderer != null && StageSprites != null && stage < StageSprites.Length)
             MapSpriteRenderer.sprite = StageSprites[stage];
 
-        // Spawn farms for this stage (INCLUDING defeated ones)
         RegionData data = StageData[stage];
         if (data == null || data.Farms == null) return;
 
@@ -63,32 +61,36 @@ public class Region : MonoBehaviour
         }
     }
 
-    private void CheckAllDefeatedForCurrentStage()
+    private void UpdateStageButtons()
     {
-        if (NextStageButton == null) return;
-
         int stage = GetStageIndex();
+
+        // Prev is available if we're not at the first stage
+        if (PrevStageButton != null)
+            PrevStageButton.SetActive(stage > 0);
+
+        // Next is available only if all farms in current stage are defeated AND there's a next stage
+        bool hasNextStage = StageData != null && stage < StageData.Length - 1;
+        bool allDefeated = AllFarmsDefeatedInStage(stage);
+
+        if (NextStageButton != null)
+            NextStageButton.SetActive(hasNextStage && allDefeated);
+    }
+
+    private bool AllFarmsDefeatedInStage(int stage)
+    {
+        if (StageData == null || StageData.Length == 0) return false;
+
         RegionData data = StageData[stage];
-        if (data == null || data.Farms == null)
-        {
-            NextStageButton.SetActive(false);
-            return;
-        }
+        if (data == null || data.Farms == null) return false;
 
         foreach (var farm in data.Farms)
         {
-            if (!farm.Defeated)
-            {
-                NextStageButton.SetActive(false);
-                return;
-            }
+            if (!farm.Defeated) return false;
         }
-
-        bool hasNext = stage < StageData.Length - 1;
-        NextStageButton.SetActive(hasNext);
+        return true;
     }
 
-    // Hook this up to NextStageButton OnClick
     public void OnNextStageClicked()
     {
         if (StageProgress.Instance == null) return;
@@ -96,7 +98,16 @@ public class Region : MonoBehaviour
         StageProgress.Instance.stageIndex++;
         StageProgress.Instance.stageIndex = Mathf.Clamp(StageProgress.Instance.stageIndex, 0, StageData.Length - 1);
 
-        // Reload map scene to clear old spawned farm GameObjects
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnPrevStageClicked()
+    {
+        if (StageProgress.Instance == null) return;
+
+        StageProgress.Instance.stageIndex--;
+        StageProgress.Instance.stageIndex = Mathf.Clamp(StageProgress.Instance.stageIndex, 0, StageData.Length - 1);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
