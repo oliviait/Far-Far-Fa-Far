@@ -16,7 +16,7 @@ MonoBehaviour:
   FarmerName: Leila
   Species: Sheep
   Location: {x: 1.18, y: -0.62, z: 0}
-  Defeated: 0
+  Defeated: 1
   BoardSizeX: 7
   BoardSizeY: 5
   Animals:

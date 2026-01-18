@@ -16,7 +16,7 @@ MonoBehaviour:
   FarmerName: Mats
   Species: Cow
   Location: {x: -0.07, y: -3.42, z: 0}
-  Defeated: 0
+  Defeated: 1
   BoardSizeX: 5
   BoardSizeY: 1
   Animals:
