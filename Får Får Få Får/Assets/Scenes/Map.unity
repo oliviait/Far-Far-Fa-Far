@@ -996,7 +996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1091610991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1788698858}
+        m_TargetAssemblyTypeName: Region, Assembly-CSharp
+        m_MethodName: OnNextStageClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1091610991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,13 +1715,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Region
   StageData:
   - {fileID: 11400000, guid: 08c2c4c15b0320e4faeb4b0a25d54801, type: 2}
-  - {fileID: 11400000, guid: 63267153954220946885ddb9f87d476e, type: 2}
   - {fileID: 11400000, guid: 146ed3c66a79134438c15aa543f84660, type: 2}
+  - {fileID: 11400000, guid: 63267153954220946885ddb9f87d476e, type: 2}
   - {fileID: 11400000, guid: 77b45eb2589d58f40a47341104e74a1b, type: 2}
   StageSprites:
   - {fileID: 21300000, guid: 8dc6b4d6dd16d0d4a882a702e31301ce, type: 3}
-  - {fileID: -4771845206464999569, guid: 4a4166b69ab3ef24d87be4b81c687f59, type: 3}
   - {fileID: -893400947478452949, guid: c14ee07c80fccfa44b32d529ec1e476e, type: 3}
+  - {fileID: -4771845206464999569, guid: 4a4166b69ab3ef24d87be4b81c687f59, type: 3}
   - {fileID: -3600721753297096592, guid: efe6f62340ec2c745aaf0713ab19d076, type: 3}
   MapSpriteRenderer: {fileID: 1788698856}
   OpponentFarmPrefab: {fileID: 6441217683984658458, guid: 27fe3cf79f803294b822c4d7c22336a8, type: 3}
