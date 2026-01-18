@@ -10,7 +10,7 @@ public class OpponentFarm : MonoBehaviour
     private GameObject FarmInfoPanel;
     private Collider2D col;
     private SpriteRenderer sr;
-    
+
     private void Awake()
     {
         col = GetComponent<Collider2D>();
@@ -24,15 +24,27 @@ public class OpponentFarm : MonoBehaviour
         ApplyDefeatedState();
     }
 
+    private bool IsDefeated()
+    {
+        // Persistent defeated state (survives scene changes)
+        if (data == null) return false;
+        return DefeatProgress.Instance != null && DefeatProgress.Instance.IsDefeated(data.FarmID);
+    }
+
     private void ApplyDefeatedState()
     {
         if (data == null) return;
 
-        // Optional: dim (remove if you already have a better defeated look)
+        bool defeated = IsDefeated();
+
+        // Disable clicking if defeated
+        if (col != null) col.enabled = !defeated;
+
+        // Dim if defeated (optional)
         if (sr != null)
         {
             var c = sr.color;
-            c.a = data.Defeated ? 0.4f : 1f;
+            c.a = defeated ? 0.4f : 1f;
             sr.color = c;
         }
     }
@@ -50,7 +62,7 @@ public class OpponentFarm : MonoBehaviour
                 FarmInfoCanvas.gameObject.SetActive(false);
             }
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
             FarmInfoCanvas.gameObject.SetActive(false);
     }
@@ -58,6 +70,9 @@ public class OpponentFarm : MonoBehaviour
     void OnMouseDown()
     {
         if (data == null) return;
+
+        // Extra safety: if defeated, do nothing (even if collider is somehow still enabled)
+        if (IsDefeated()) return;
 
         StartCoroutine(OpenPanelNextFrame());
     }

@@ -69,12 +69,11 @@ public class TurnController : MonoBehaviour
         WinLosePanel.gameObject.SetActive(true);
         WinLoseText.text = "You Won!";
 
-        // Mark the actual farm data as defeated
-        if (Player.Instance != null && Player.Instance.enteringLevel != null)
+        if (Player.Instance != null && Player.Instance.enteringLevel != null && DefeatProgress.Instance != null)
         {
             Player.Instance.enteringLevel.Defeated = true;
+            DefeatProgress.Instance.MarkDefeated(Player.Instance.enteringLevel.FarmID);
         }
-
         gameObject.SetActive(false);
         Player.Instance.freshStart = false;
         
