@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class TurnController : MonoBehaviour
     // AI
     public float TimeBetweenAIAttacks;
     private float nextAIAttackTime = float.MaxValue;
+    
+    // Skip turn button ref
+    public Button skipTurnButton;
 
     private void Awake()
     {
@@ -57,6 +61,7 @@ public class TurnController : MonoBehaviour
         // Add restart level button later
         gameObject.SetActive(false);
         Player.Instance.freshStart = false;
+        skipTurnButton.gameObject.SetActive(false);
     }
 
     private void GameWon()
@@ -64,7 +69,7 @@ public class TurnController : MonoBehaviour
         WinLosePanel.gameObject.SetActive(true);
         WinLoseText.text = "You Won!";
 
-        // Mark the actual farm data as defeated (this matches your existing map logic)
+        // Mark the actual farm data as defeated
         if (Player.Instance != null && Player.Instance.enteringLevel != null)
         {
             Player.Instance.enteringLevel.Defeated = true;
@@ -72,6 +77,8 @@ public class TurnController : MonoBehaviour
 
         gameObject.SetActive(false);
         Player.Instance.freshStart = false;
+        
+        skipTurnButton.gameObject.SetActive(false);
     }
 
 

@@ -1398,6 +1398,7 @@ MonoBehaviour:
   WinLoseText: {fileID: 556747855}
   WinLosePanel: {fileID: 43525805}
   TimeBetweenAIAttacks: 0
+  skipTurnButton: {fileID: 474780556}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
