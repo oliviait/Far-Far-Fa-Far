@@ -47,6 +47,7 @@ public class Stats : MonoBehaviour
 
     public override string ToString()
     {
-        return Name + "\nHP: " + MaxHp + "\nSTR: " + Str + "\nDEF: " + Def + "\nSPD: " + Spd;
+        return Name + "\n" +
+               "HP: " + MaxHp + "   STR: " + Str + "\nDEF: " + Def + "   SPD: " + Spd;
     }
 }
